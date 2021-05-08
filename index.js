@@ -1,5 +1,5 @@
 // ul要素を取得
-const list = document.getElementById('ul');
+const ul = document.getElementById('ul');
 
 // liタグを作成
 const listItem = document.createElement('li');
