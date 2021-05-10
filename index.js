@@ -5,7 +5,8 @@ const ul = document.getElementById('ul');
 const listItem = document.createElement('li');
 
 // liタグにテキストを挿入
-listItem.innerHTML = 'これです';
+listItem.textContent = 'これです';
+console.log(listItem);
 
 // ulの子要素としてliタグを挿入
-list.appendChild(listItem);
+ul.appendChild(listItem);
