@@ -13,7 +13,7 @@ img.setAttribute('src','bookmark.png');
 img.setAttribute('alt','ブックマーク');
 
 // imgタグをaタグの子要素として挿入
-anker.innerText = 'これです';
+anker.textContent = 'これです';
 anker.insertBefore(img, anker.firstChild);
 
 // aタグをliタグの子要素として挿入
