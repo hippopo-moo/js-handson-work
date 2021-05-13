@@ -6,8 +6,8 @@ const img = document.createElement('img');
 img.src = 'bookmark.png';
 img.alt = 'ブックマーク';
 a.textContent = 'これです';
-a.prepend(img);
 // メモ：insertBeforeでも動くけどprependが記述量減って良い！
-// a.insertBefore(img, a.firstChild);
+a.insertBefore(img, a.firstChild);
+// a.prepend(img);※IE非対応
 li.appendChild(a);
 ul.appendChild(li);
