@@ -1,6 +1,6 @@
 const ul = document.getElementById('ul');
 
-// これは連想配列？
+// これは連想配列？→連想配列！
 const listData = {
   data1: {
     href:'1.html',
@@ -14,13 +14,13 @@ const listData = {
   }
 }
 
-Object.keys(listData).forEach((key)=>{
+Object.values(listData).forEach((data)=>{
   const li = document.createElement('li');
   const a = document.createElement('a');
-  a.textContent = listData[key].text;
-  a.href = listData[key].href;
+  a.textContent = data.text;
+  a.href = data.href;
   const img = document.createElement('img');
-  img.src = listData[key].src;
+  img.src = data.src;
   a.insertBefore(img, a.firstChild);
   li.appendChild(a);
   ul.appendChild(li);
