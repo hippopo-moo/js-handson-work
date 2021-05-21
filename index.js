@@ -15,5 +15,4 @@ listData.forEach(data => {
   img.alt = data.alt;
   fragment.appendChild(li).appendChild(a).insertBefore(img, a.firstChild);  
 });
-console.log(fragment.childNodes);
 ul.appendChild(fragment);
