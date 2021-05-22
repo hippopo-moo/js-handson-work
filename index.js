@@ -5,16 +5,18 @@ const listData = [
   {to: "message.html", img: "2.png", alt:"画像2", text: "メッセージ"}
 ]
 
-const getListData = async ()=>{
-  try {
-    return listData;
-  } catch (error) {
-    console.log('Error');
-  }
+const getListData = ()=>{
+  return new Promise(function(resolve, reject){
+    try {
+      resolve(listData);
+    } catch (error) {
+      reject('error') 
+    }
+  })
 }
 
 const createList = ()=> {
-  return getListData()
+  getListData()
   .then((data)=>{
     listData.forEach(data => {
       const li = document.createElement('li');
