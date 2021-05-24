@@ -8,7 +8,9 @@ const listData = [
 const getListData = ()=>{
   return new Promise(function(resolve, reject){
     try {
-      resolve(listData);
+      setTimeout(() => {
+        resolve(listData);
+      }, 3000);
     } catch (error) {
       reject('error') 
     }
