@@ -18,6 +18,7 @@ const getListData = ()=>{
 const createList = ()=> {
   getListData()
   .then((data)=>{
+    console.log(data);
     listData.forEach(data => {
       const li = document.createElement('li');
       const a = document.createElement('a');
@@ -30,8 +31,8 @@ const createList = ()=> {
     });
     ul.appendChild(fragment);
   })
-  .catch(()=>{
-    console.log(reject);
+  .catch((error)=>{
+    console.log(error);
   })
 }
 createList();
