@@ -19,7 +19,6 @@ const getListData = ()=>{
 const createList = ()=> {
   getListData()
   .then((data)=>{
-    console.log('loadingImage'+loadingImage);
     loadingImage.style.display = 'none';
     listData.forEach(data => {
       const li = document.createElement('li');
