@@ -33,7 +33,7 @@ const createList = ()=> {
     ul.appendChild(fragment);
   })
   .catch((error)=>{
-    console.log(error);
+    console.error(error);
   })
 }
 createList();
