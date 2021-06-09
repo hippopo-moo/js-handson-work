@@ -22,6 +22,8 @@ const getListData = () => {
       }, 3000);
     } catch (error) {
       console.error(error);
+    } finally {
+      console.log('finally句内です');
     }
   });
 }
