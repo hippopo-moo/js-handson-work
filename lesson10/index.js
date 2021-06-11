@@ -12,7 +12,6 @@ const list = [
   {to: "bookmark.html", img: "1.png", alt:"画像1", text: "ブックマーク"},
   {to: "message.html", img: "2.png", alt:"画像2", text: "メッセージ"}
 ]
-// const loadingImage = document.getElementById("loading");
 
 const getListData = () => {
   return new Promise((resolve)=> {
@@ -31,6 +30,7 @@ const getListData = () => {
 const createList = async ()=> {
   main.appendChild(fragmentLoadingImage);
   const listData = await getListData();
+  main.removeChild(document.getElementById('loading'));
   listData.forEach( listDataItem => {
     const li = document.createElement('li');
     const a = document.createElement('a');
@@ -41,7 +41,6 @@ const createList = async ()=> {
     img.alt = listDataItem.alt;
     fragment.appendChild(li).appendChild(a).insertBefore(img, a.firstChild);  
   });
-  main.removeChild(document.getElementById('loading'));
   ul.appendChild(fragment);
 }
 createList();
