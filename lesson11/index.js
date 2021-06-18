@@ -1,11 +1,7 @@
 const main = document.getElementsByTagName('main')[0];
 const ul = document.getElementById('ul');
 const fragment = document.createDocumentFragment();
-
-const list = [
-  {to: "bookmark.html", img: "1.png", alt:"画像1", text: "ブックマーク"},
-  {to: "message.html", img: "2.png", alt:"画像2", text: "メッセージ"}
-]
+const url = 'https://jsondata.okiba.me/v1/json/YwwDG210615121114';
 
 const createLoadingImage = () => {
   const fragmentLoadingImage = document.createDocumentFragment();
@@ -25,28 +21,32 @@ const getListData = () => {
   return new Promise((resolve)=> {
     try {
       setTimeout(() => {
-        resolve(list);
+        resolve(fetch(url));
       }, 3000);
     } catch (error) {
       console.error(error);
     } finally {
-      console.log('finally句内です');
+      console.log('finally');
     }
   });
 }
 
 const createList = async ()=> {
   createLoadingImage();
-  const listData = await getListData();
+  const response = await getListData();
+  const listData = await response.json();
+  // console.log(listData);
   removeLoadingImage();
-  listData.forEach( listDataItem => {
+  Object.keys(listData.data).forEach( key => {
+    console.log(key);
+    console.log(listData.data[key]);
     const li = document.createElement('li');
     const a = document.createElement('a');
-    a.textContent = listDataItem.text;
-    a.href = listDataItem.to;
+    a.textContent = listData.data[key].text;
+    a.href = listData.data[key].a;
     const img = document.createElement('img');
-    img.src = listDataItem.img;
-    img.alt = listDataItem.alt;
+    img.src = listData.data[key].img;
+    img.alt = listData.data[key].alt;
     fragment.appendChild(li).appendChild(a).insertBefore(img, a.firstChild);  
   });
   ul.appendChild(fragment);
