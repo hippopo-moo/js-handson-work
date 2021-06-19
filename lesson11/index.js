@@ -29,11 +29,7 @@ const getListData = () => {
   });
 }
 
-const createList = async ()=> {
-  createLoadingImage();
-  const response = await getListData();
-  const listData = await response.json();
-  removeLoadingImage();
+const createList = async (listData)=> {
   Object.keys(listData.data).forEach( key => {
     const li = document.createElement('li');
     const a = document.createElement('a');
@@ -46,4 +42,13 @@ const createList = async ()=> {
   });
   ul.appendChild(fragment);
 }
-createList();
+
+const init = async () => {
+  createLoadingImage();
+  const response = await getListData();
+  const listData = await response.json();
+  createList(listData);
+  removeLoadingImage();
+}
+
+init();
