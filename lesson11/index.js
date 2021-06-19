@@ -35,11 +35,8 @@ const createList = async ()=> {
   createLoadingImage();
   const response = await getListData();
   const listData = await response.json();
-  // console.log(listData);
   removeLoadingImage();
   Object.keys(listData.data).forEach( key => {
-    console.log(key);
-    console.log(listData.data[key]);
     const li = document.createElement('li');
     const a = document.createElement('a');
     a.textContent = listData.data[key].text;
