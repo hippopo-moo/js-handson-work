@@ -29,15 +29,16 @@ const getListData = () => {
   });
 }
 
-const createList = async (listData)=> {
-  Object.keys(listData.data).forEach( key => {
+const createList = async ({data})=> {
+  const fetchedData = data;
+  fetchedData.forEach( element => {
     const li = document.createElement('li');
     const a = document.createElement('a');
-    a.textContent = listData.data[key].text;
-    a.href = listData.data[key].a;
+    a.textContent = element.text;
+    a.href = element.a;
     const img = document.createElement('img');
-    img.src = listData.data[key].img;
-    img.alt = listData.data[key].alt;
+    img.src = element.img;
+    img.alt = element.alt;
     fragment.appendChild(li).appendChild(a).insertBefore(img, a.firstChild);  
   });
   ul.appendChild(fragment);
