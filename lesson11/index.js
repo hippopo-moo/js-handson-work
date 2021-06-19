@@ -20,9 +20,7 @@ const removeLoadingImage = () => {
 const getListData = () => {
   return new Promise((resolve)=> {
     try {
-      setTimeout(() => {
-        resolve(fetch(url));
-      }, 3000);
+      resolve(fetch(url));
     } catch (error) {
       console.error(error);
     } finally {
