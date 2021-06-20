@@ -6,3 +6,18 @@ a {
 a > img {
   width: 18px;
 }
+
+#js-btn-fetch {
+  padding: 15px 25px;
+  background-color: beige;
+  margin-left: 25px;
+  border-radius: 8px;
+  outline: none;
+  border: 1px solid #aaa;
+  cursor: pointer;
+}
+
+#js-btn-fetch:hover {
+  opacity: .7;
+  transition: all .3s ;
+}

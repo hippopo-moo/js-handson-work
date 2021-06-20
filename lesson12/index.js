@@ -55,5 +55,7 @@ const init = async () => {
 
 
 fetchBtn.addEventListener("click",()=>{
-  init();
+  if(!ul.hasChildNodes()){
+    init();
+  }
 });
