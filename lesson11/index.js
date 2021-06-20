@@ -48,8 +48,8 @@ const init = async () => {
   createLoadingImage();
   const response = await getListData();
   const listData = await response.json();
-  createList(listData);
   removeLoadingImage();
+  createList(listData);
 }
 
 init();
