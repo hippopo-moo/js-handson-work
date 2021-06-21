@@ -2,6 +2,7 @@ const main = document.getElementsByTagName('main')[0];
 const ul = document.getElementById('ul');
 const fragment = document.createDocumentFragment();
 const url = 'https://jsondata.okiba.me/v1/json/YwwDG210615121114';
+const fetchBtn = document.getElementById("js-btn-fetch"); 
 
 const createLoadingImage = () => {
   const fragmentLoadingImage = document.createDocumentFragment();
@@ -52,4 +53,9 @@ const init = async () => {
   createList(listData);
 }
 
-init();
+
+fetchBtn.addEventListener("click",()=>{
+  if(!ul.hasChildNodes()){
+    init();
+  }
+});
