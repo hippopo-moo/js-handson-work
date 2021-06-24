@@ -1,8 +1,10 @@
 const main = document.getElementsByTagName('main')[0];
-const ul = document.getElementById('ul');
+const ul = document.createElement('ul');
 const fragment = document.createDocumentFragment();
-const url = 'https://jsondata.okiba.me/v1/json/YwwDG210615121114';
+const url = 'https://jsondata.okiba.me/v1/json/xL3LX210624191849';
 const fetchBtn = document.getElementById("js-btn-fetch"); 
+const modal = document.getElementById("modal");
+const modalBody = document.getElementById("modal-body");
 
 const createLoadingImage = () => {
   const fragmentLoadingImage = document.createDocumentFragment();
@@ -45,17 +47,26 @@ const createList = async ({data})=> {
   ul.appendChild(fragment);
 }
 
+const appendToModal = ()=>{
+  modalBody.appendChild(ul);
+}
+
+const showModal = ()=>{
+  modal.classList.add("is-show");
+}
+
+
 const init = async () => {
   createLoadingImage();
   const response = await getListData();
   const listData = await response.json();
   removeLoadingImage();
   createList(listData);
+  appendToModal(ul);
+  showModal();
 }
 
 
 fetchBtn.addEventListener("click",()=>{
-  if(!ul.hasChildNodes()){
-    init();
-  }
+  init();
 });

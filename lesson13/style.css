@@ -1,0 +1,47 @@
+a {
+  display: flex;
+  align-items: center;
+}
+
+a > img {
+  width: 18px;
+}
+
+#js-btn-fetch {
+  padding: 15px 25px;
+  background-color: beige;
+  margin-left: 25px;
+  border-radius: 8px;
+  outline: none;
+  border: 1px solid #aaa;
+  cursor: pointer;
+}
+
+#js-btn-fetch:hover {
+  opacity: .7;
+  transition: all .3s ;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content{
+background-color: white;
+width: 500px;
+margin: 40% auto;
+padding: 30px;
+border-radius: 8px;
+}
+
+.modal.is-show {
+  display: block;
+}
