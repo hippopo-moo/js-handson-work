@@ -35,7 +35,7 @@ const getListData = () => {
 }
 
 const createList = async ({data}) => {
-  ul.innerHTML = "";
+  clearList();
   const fetchedData = data;
   fetchedData.forEach( element => {
     const li = document.createElement('li');
@@ -48,6 +48,10 @@ const createList = async ({data}) => {
     fragment.appendChild(li).appendChild(a).insertBefore(img, a.firstChild);  
   });
   ul.appendChild(fragment);
+}
+
+const clearList = () => {
+  ul.innerHTML = "";
 }
 
 const appendToModal = () => {
@@ -64,7 +68,7 @@ const init = async () => {
   const listData = await response.json();
   removeLoadingImage();
   createList(listData);
-  appendToModal(ul);
+  appendToModal();
   showModal();
 }
 
