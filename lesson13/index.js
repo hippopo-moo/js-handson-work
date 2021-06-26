@@ -8,7 +8,6 @@ const modalBody = document.getElementById("js-modal-body");
 const modalOverlay = document.getElementById("js-modal-overlay");
 
 const createLoadingImage = () => {
-  const fragmentLoadingImage = document.createDocumentFragment();
   const div = document.createElement('div');
   div.id = "loading"
   const img = document.createElement('img');
