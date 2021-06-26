@@ -13,8 +13,7 @@ const createLoadingImage = () => {
   div.id = "loading"
   const img = document.createElement('img');
   img.src = "./loading-circle.gif";
-  fragmentLoadingImage.appendChild(div).appendChild(img)
-  main.appendChild(fragmentLoadingImage);
+  main.appendChild(div).appendChild(img);
 }
 
 const removeLoadingImage = () => {
