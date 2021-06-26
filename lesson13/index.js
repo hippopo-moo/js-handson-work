@@ -1,6 +1,6 @@
 const main = document.getElementsByTagName('main')[0];
 const ul = document.createElement('ul');
-const fragment = document.createDocumentFragment();
+
 const url = 'https://jsondata.okiba.me/v1/json/xL3LX210624191849';
 const fetchBtn = document.getElementById("js-btn-fetch"); 
 const modal = document.getElementById("js-modal");
@@ -36,6 +36,7 @@ const getListData = () => {
 const createList = async ({data}) => {
   clearList();
   const fetchedData = data;
+  const fragment = document.createDocumentFragment();
   fetchedData.forEach( element => {
     const li = document.createElement('li');
     const a = document.createElement('a');
