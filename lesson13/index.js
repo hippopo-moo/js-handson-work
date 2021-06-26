@@ -4,7 +4,6 @@ const fragment = document.createDocumentFragment();
 const url = 'https://jsondata.okiba.me/v1/json/xL3LX210624191849';
 const fetchBtn = document.getElementById("js-btn-fetch"); 
 const modal = document.getElementById("js-modal");
-const modalContent = document.getElementById("js-modal-content");
 const modalBody = document.getElementById("js-modal-body");
 const modalOverlay = document.getElementById("js-modal-overlay");
 
