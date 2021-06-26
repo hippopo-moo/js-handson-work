@@ -68,9 +68,6 @@ const init = async () => {
   showModal();
 }
 
-// TODO モーダルコンテンツはクリック無効にする
-
-
 fetchBtn.addEventListener("click",()=>{
   init();
 });
