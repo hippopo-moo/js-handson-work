@@ -34,7 +34,7 @@ const getListData = () => {
   });
 }
 
-const createList = async ({data})=> {
+const createList = async ({data}) => {
   ul.innerHTML = "";
   const fetchedData = data;
   fetchedData.forEach( element => {
@@ -50,11 +50,11 @@ const createList = async ({data})=> {
   ul.appendChild(fragment);
 }
 
-const appendToModal = ()=>{
+const appendToModal = () => {
   modalBody.appendChild(ul);
 }
 
-const showModal = ()=>{
+const showModal = () => {
   modal.classList.add("is-show");
 }
 
@@ -68,10 +68,10 @@ const init = async () => {
   showModal();
 }
 
-fetchBtn.addEventListener("click",()=>{
+fetchBtn.addEventListener("click", () => {
   init();
 });
 
-modalOverlay.addEventListener( "click", ()=>{
+modalOverlay.addEventListener( "click", () => {
   modal.classList.remove("is-show");
 })
