@@ -1,17 +1,18 @@
 const main = document.getElementsByTagName('main')[0];
-const ul = document.getElementById('ul');
-const fragment = document.createDocumentFragment();
-const url = 'https://jsondata.okiba.me/v1/json/YwwDG210615121114';
+const ul = document.createElement('ul');
+
+const url = 'https://jsondata.okiba.me/v1/json/xL3LX210624191849';
 const fetchBtn = document.getElementById("js-btn-fetch"); 
+const modal = document.getElementById("js-modal");
+const modalBody = document.getElementById("js-modal-body");
+const modalOverlay = document.getElementById("js-modal-overlay");
 
 const createLoadingImage = () => {
-  const fragmentLoadingImage = document.createDocumentFragment();
   const div = document.createElement('div');
   div.id = "loading"
   const img = document.createElement('img');
   img.src = "./loading-circle.gif";
-  fragmentLoadingImage.appendChild(div).appendChild(img)
-  main.appendChild(fragmentLoadingImage);
+  main.appendChild(div).appendChild(img);
 }
 
 const removeLoadingImage = () => {
@@ -30,8 +31,10 @@ const getListData = () => {
   });
 }
 
-const createList = async ({data})=> {
+const createList = async ({data}) => {
+  clearList();
   const fetchedData = data;
+  const fragment = document.createDocumentFragment();
   fetchedData.forEach( element => {
     const li = document.createElement('li');
     const a = document.createElement('a');
@@ -45,17 +48,32 @@ const createList = async ({data})=> {
   ul.appendChild(fragment);
 }
 
+const clearList = () => {
+  ul.innerHTML = "";
+}
+
+const appendToModal = () => {
+  modalBody.appendChild(ul);
+}
+
+const showModal = () => {
+  modal.classList.add("is-show");
+}
+
 const init = async () => {
   createLoadingImage();
   const response = await getListData();
   const listData = await response.json();
   removeLoadingImage();
   createList(listData);
+  appendToModal();
+  showModal();
 }
 
-
-fetchBtn.addEventListener("click",()=>{
-  if(!ul.hasChildNodes()){
-    init();
-  }
+fetchBtn.addEventListener("click", () => {
+  init();
 });
+
+modalOverlay.addEventListener( "click", () => {
+  modal.classList.remove("is-show");
+})
