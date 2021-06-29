@@ -7,17 +7,19 @@ a > img {
   width: 18px;
 }
 
-#js-btn-fetch {
+#js-btn-fetch,
+#js-btn-showModal {
   padding: 15px 25px;
   background-color: beige;
-  margin-left: 25px;
+  /* margin-left: 25px; */
   border-radius: 8px;
   outline: none;
   border: 1px solid #aaa;
   cursor: pointer;
 }
 
-#js-btn-fetch:hover {
+#js-btn-fetch:hover,
+#js-btn-showModal:hover {
   opacity: .7;
   transition: all .3s ;
 }
@@ -48,6 +50,22 @@ width: 500px;
 margin: 0 auto;
 padding: 30px;
 border-radius: 8px;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal-body #js-btn-fetch{
+  margin-top: 20px;
+}
+
+#js-input-number {
+  width: 100px;
+  padding: 15px 25px;
+  font-size: 18px;
 }
 
 .modal.is-show {
