@@ -7,8 +7,8 @@ a > img {
   width: 18px;
 }
 
-#js-btn-fetch,
-#js-btn-showModal {
+.btn-fetch,
+.show-modal {
   padding: 15px 25px;
   background-color: beige;
   /* margin-left: 25px; */
@@ -18,8 +18,8 @@ a > img {
   cursor: pointer;
 }
 
-#js-btn-fetch:hover,
-#js-btn-showModal:hover {
+.btn-fetch:hover,
+.show-modal:hover {
   opacity: .7;
   transition: all .3s ;
 }
@@ -58,11 +58,11 @@ border-radius: 8px;
   justify-content: center;
 }
 
-.modal-body #js-btn-fetch{
+.modal-body .btn-fetch{
   margin-top: 20px;
 }
 
-#js-input-number {
+.input-number {
   width: 100px;
   padding: 15px 25px;
   font-size: 18px;
