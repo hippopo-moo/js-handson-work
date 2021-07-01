@@ -60,13 +60,6 @@ const showModal = () => {
   modal.classList.add("is-show");
 }
 
-const getInputNum = () => {
-  const inputNum = document.getElementById("js-input-number");
-  return new Promise((resolve)=> {
-    resolve(inputNum.value);
-  });
-}
-
 const init = async (inputNum) => {
   console.log(inputNum);
   createLoadingImage();
