@@ -1,8 +1,8 @@
 const main = document.getElementsByTagName('main')[0];
 const ul = document.createElement('ul');
-
 const url = 'https://jsondata.okiba.me/v1/json/xL3LX210624191849';
-const fetchBtn = document.getElementById("js-btn-fetch"); 
+const fetchBtn = document.getElementById("js-btn-fetch");
+const showModalBtn = document.getElementById("js-btn-showModal");
 const modal = document.getElementById("js-modal");
 const modalBody = document.getElementById("js-modal-body");
 const modalOverlay = document.getElementById("js-modal-overlay");
@@ -52,28 +52,30 @@ const clearList = () => {
   ul.innerHTML = "";
 }
 
-const appendToModal = () => {
-  modalBody.appendChild(ul);
+const appendToMain = () => {
+  main.appendChild(ul);
 }
 
 const showModal = () => {
   modal.classList.add("is-show");
 }
 
-const init = async () => {
+const init = async (inputNum) => {
+  console.log(inputNum);
   createLoadingImage();
   const response = await getListData();
   const listData = await response.json();
   removeLoadingImage();
   createList(listData);
-  appendToModal();
-  showModal();
+  appendToMain();
+  modal.classList.remove("is-show");
 }
 
-fetchBtn.addEventListener("click", () => {
-  init();
+showModalBtn.addEventListener("click", () => {
+  showModal();
 });
 
-modalOverlay.addEventListener( "click", () => {
-  modal.classList.remove("is-show");
-})
+fetchBtn.addEventListener("click", () => {
+  const inputNum = document.getElementById("js-input-number");
+  init(inputNum.value); 
+});
