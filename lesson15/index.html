@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>lesson 14</title>
+  <title>lesson 15</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -17,8 +17,15 @@
       <div class="modal-overlay" id="js-modal-overlay"></div>
       <div class="modal-content" id="js-modal-content">
         <div class="modal-body" id="js-modal-body">
-          <input type="number" name="" id="js-input-number" value="" class="input-number">
-          <button id="js-btn-fetch" class="btn-fetch">Get input num & Fetch Data</button>
+          <form action="./index.html" method="post" class="form" id="js-form" onsubmit="init();">
+            <label for="js-input-number">数字
+              <input type="number" name="" id="js-input-number" value="" class="input-number">
+            </label>
+            <label for="js-input-name" class="label">名前
+              <input type="text" name="" id="js-input-name" class="input-name">
+            </label>
+          </form>
+          <button type="submit" id="js-btn-fetch" class="btn-fetch">Get input num & Fetch Data</button>
         </div>
       </div>
     </div>

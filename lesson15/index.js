@@ -60,8 +60,9 @@ const showModal = () => {
   modal.classList.add("is-show");
 }
 
-const init = async (inputNum) => {
+const init = async (inputNum, inputName) => {
   console.log(inputNum);
+  console.log(inputName);
   createLoadingImage();
   const response = await getListData();
   const listData = await response.json();
@@ -77,5 +78,6 @@ showModalBtn.addEventListener("click", () => {
 
 fetchBtn.addEventListener("click", () => {
   const inputNum = document.getElementById("js-input-number");
-  init(inputNum.value); 
+  const inputName = document.getElementById("js-input-name");
+  init(inputNum.value,inputName.value); 
 });
