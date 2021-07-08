@@ -6,6 +6,7 @@ const showModalBtn = document.getElementById("js-btn-showModal");
 const modal = document.getElementById("js-modal");
 const modalBody = document.getElementById("js-modal-body");
 const modalOverlay = document.getElementById("js-modal-overlay");
+const form = document.getElementById('js-form');
 
 const createLoadingImage = () => {
   const div = document.createElement('div');
@@ -60,7 +61,7 @@ const showModal = () => {
   modal.classList.add("is-show");
 }
 
-const init = async (inputNum, inputName) => {
+const init = async (inputNum,inputName) => {
   console.log(inputNum);
   console.log(inputName);
   createLoadingImage();
@@ -76,8 +77,9 @@ showModalBtn.addEventListener("click", () => {
   showModal();
 });
 
-fetchBtn.addEventListener("click", () => {
+form.addEventListener("submit", (e) => {
   const inputNum = document.getElementById("js-input-number");
   const inputName = document.getElementById("js-input-name");
+  e.preventDefault();
   init(inputNum.value,inputName.value); 
 });
