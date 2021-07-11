@@ -1,4 +1,4 @@
-const main = document.getElementsByTagName('main')[0];
+const main = document.getElementById('js-main');
 const ul = document.createElement('ul');
 const url = 'https://jsondata.okiba.me/v1/json/xL3LX210624191849';
 const fetchBtn = document.getElementById("js-btn-fetch");
