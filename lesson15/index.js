@@ -75,8 +75,8 @@ showModalBtn.addEventListener("click", () => {
 });
 
 form.addEventListener("submit", (e) => {
-  const inputNum = document.getElementById("js-input-number");
-  const inputName = document.getElementById("js-input-name");
+  const inputNum = document.getElementById("js-input-number").value;
+  const inputName = document.getElementById("js-input-name").value;
   e.preventDefault();
-  init(inputNum.value,inputName.value); 
+  init(inputNum,inputName); 
 });
