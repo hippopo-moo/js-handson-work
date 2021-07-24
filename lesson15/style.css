@@ -52,18 +52,22 @@ padding: 30px;
 border-radius: 8px;
 }
 
-.modal-body {
+.form {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.form .label {
+  margin-top: 20px;
 }
 
 .modal-body .btn-fetch{
   margin-top: 20px;
 }
 
-.input-number {
-  width: 100px;
+.input-number,
+.input-name {
+  width: 300px;
   padding: 15px 25px;
   font-size: 18px;
 }

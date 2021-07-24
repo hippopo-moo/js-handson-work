@@ -1,11 +1,9 @@
-const main = document.getElementsByTagName('main')[0];
+const main = document.getElementById('js-main');
 const ul = document.createElement('ul');
 const url = 'https://jsondata.okiba.me/v1/json/xL3LX210624191849';
-const fetchBtn = document.getElementById("js-btn-fetch");
 const showModalBtn = document.getElementById("js-btn-showModal");
 const modal = document.getElementById("js-modal");
-const modalBody = document.getElementById("js-modal-body");
-const modalOverlay = document.getElementById("js-modal-overlay");
+const form = document.getElementById('js-form');
 
 const createLoadingImage = () => {
   const div = document.createElement('div');
@@ -60,8 +58,9 @@ const showModal = () => {
   modal.classList.add("is-show");
 }
 
-const init = async (inputNum) => {
+const init = async (inputNum,inputName) => {
   console.log(inputNum);
+  console.log(inputName);
   createLoadingImage();
   const response = await getListData();
   const listData = await response.json();
@@ -75,7 +74,9 @@ showModalBtn.addEventListener("click", () => {
   showModal();
 });
 
-fetchBtn.addEventListener("click", () => {
-  const inputNum = document.getElementById("js-input-number");
-  init(inputNum.value); 
+form.addEventListener("submit", (e) => {
+  const inputNum = document.getElementById("js-input-number").value;
+  const inputName = document.getElementById("js-input-name").value;
+  e.preventDefault();
+  init(inputNum,inputName); 
 });
