@@ -1,0 +1,111 @@
+{ "data": [
+    {
+      "cat": "news",
+      "is-defaultActive": true,
+      "image": {
+          "img": "img/news.png",
+          "alt": "newsの画像"
+      },
+      "article": {
+          "article1": {
+              "title": "ニュース1タイトルニュース1タイトル",
+              "url": "news/article1.html",
+              "commentCount": 99,
+              "is_new": true
+          },
+          "article2": {
+              "title": "ニュース2タイトルニュース2タイトル",
+              "url": "news/article1.html",
+              "commentCount": 0,
+              "is_new": true
+          },
+          "article3": {
+              "title": "ニュース3タイトルニュース3タイトル",
+              "url": "news/article1.html",
+              "commentCount": 32,
+              "is_new": false
+          },
+          "article4": {
+              "title": "ニュース3タイトルニュース3タイトル",
+              "url": "news/article1.html",
+              "commentCount": 32,
+              "is_new": false
+          }
+      }
+    },
+    {
+      "cat": "economy",
+      "is-defaultActive": false,
+      "image": {
+          "img": "img/news.png",
+          "alt": "newsの画像"
+      },
+      "article": {
+          "article1": {
+              "title": "ニュース1タイトルニュース1タイトル",
+              "url": "news/article1.html",
+              "commentCount": 99,
+              "is_new": true
+          },
+          "article2": {
+              "title": "ニュース2タイトルニュース2タイトル",
+              "url": "news/article1.html",
+              "commentCount": 0,
+              "is_new": true
+          },
+          "article3": {
+              "title": "ニュース3タイトルニュース3タイトル",
+              "url": "news/article1.html",
+              "commentCount": 32,
+              "is_new": false
+          },
+          "article4": {
+              "title": "ニュース3タイトルニュース3タイトル",
+              "url": "news/article1.html",
+              "commentCount": 32,
+              "is_new": false
+          }
+      }
+    },
+    {
+      "cat": "sports",
+      "is-defaultActive": false,
+      "image": {
+          "img": "img/sports.png",
+          "alt": "sportsの画像"
+      },
+      "article": {
+          "article1": {
+              "title": "ニュース1タイトルニュース1タイトル",
+              "url": "news/article1.html",
+              "commentCount": 99,
+              "is_new": true
+          },
+          "article2": {
+              "title": "ニュース2タイトルニュース2タイトル",
+              "url": "news/article1.html",
+              "commentCount": 0,
+              "is_new": true
+          },
+          "article3": {
+              "title": "ニュース3タイトルニュース3タイトル",
+              "url": "news/article1.html",
+              "commentCount": 32,
+              "is_new": true
+          },
+          "article4": {
+              "title": "ニュース3タイトルニュース3タイトル",
+              "url": "news/article1.html",
+              "commentCount": 32,
+              "is_new": false
+          },
+          "article5": {
+              "title": "ニュース3タイトルニュース3タイトル",
+              "url": "news/article1.html",
+              "commentCount": 1207,
+              "is_new": true
+          }
+      }
+    }
+  ]
+}
