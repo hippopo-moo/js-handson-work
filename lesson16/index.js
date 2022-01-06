@@ -1,4 +1,6 @@
-const url = 'https://jsondata.okiba.me/v1/json/h31qa210924195736';
+// import { v4 as uuidv4 } from 'uuid';
+// const url = 'https://jsondata.okiba.me/v1/json/cp3sC210927201738';
+const url = "test.json";
 const newsBlock = document.querySelector('.news');
 const newsTabs = document.querySelector('.news_Tabs');
 const newsContentWrapper = document.querySelector('.news_ContentWrapper');
@@ -6,49 +8,67 @@ let newsTabsIndex = 0;
 
 const createNewsTabs = (allData)=> {
   const fragment = document.createDocumentFragment();
-  for (const item in allData) {
-    if (Object.hasOwnProperty.call(allData, item)) {
-      const element = allData[item];
-      console.log(element);
-      newsTabsIndex = item;
-      console.log(item);
-      const li = document.createElement('li');
-      li.classList.add('tab_item');
-      const a = document.createElement('a');
-      a.classList.add('tab_item_link');
-      a.textContent = element.cat;
-      li.appendChild(a);
-      fragment.appendChild(li);
-    }
-  }
-  newsTabs.appendChild(fragment);
+  allData.forEach((content, index)=>{
+    newsTabsIndex = index;
+    const li = document.createElement('li');
+    li.classList.add('tab_item');
+    li.textContent = content.category;
+    newsTabs.appendChild(li);
+  })
 }
 
-// const createNewsContent = (allData)=> {
-//   const primaryElement = document.createElement("div");
-//   primaryElement.classList.add("news_Wrapper");
-//   const lists = document.createElement("ul");
-//   lists.classList.add("news__listFrame--second");
-//   const primaryImageWrapper = document.createElement("div");
-//   primaryImageWrapper.classList.add("news__partition");
-//   primaryElement.appendChild(lists);
-//   primaryElement.appendChild(primaryImageWrapper);
-//   newsBlock.appendChild(primaryElement);
-//   if (Object.hasOwnProperty.call(allData, item)) {
-//     if(allData[item].is-defaultActive){
-//       console.log(allData[item].article);
-//     }
-//     const element = allData[item];
-//     newsTabsIndex = item;
-//     const li = document.createElement('li');
-//     li.classList.add('tab_item');
-//     const a = document.createElement('a');
-//     a.classList.add('tab_item_link');
-//     a.textContent = element.cat;
-//     li.appendChild(a);
-//     fragment.appendChild(li);
-//   }
-// }
+const createNewsContent = (allData)=> {
+  const primaryElement = document.createElement("div");
+  primaryElement.classList.add("news_Wrapper");
+  const lists = document.createElement("ul");
+  lists.classList.add("news_Lists");
+  const primaryImageWrapper = document.createElement("div");
+  primaryImageWrapper.classList.add("news_Img");
+  primaryElement.appendChild(lists);
+  primaryElement.appendChild(primaryImageWrapper);
+  newsBlock.appendChild(primaryElement);
+  // console.log(allData);
+  allData.forEach((content, index)=>{
+    if(content.isActive){
+      Object.keys(content.article).forEach((key)=>{
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        const comment = document.createElement('span');
+        a.href = content.article[key].url;
+        a.textContent = content.article[key].title;
+        comment.textContent = content.article[key].commentCount;
+        li.appendChild(a);
+        li.appendChild(comment);
+        lists.appendChild(li);
+        if(content.article[key].is_new){
+          console.log('new article');
+        }
+      })
+    }
+  })
+  newsTabs.addEventListener('click', (event)=>{
+    // event.targetにis-activeをつける
+    // event.targetのidを取得し、それに紐づく記事と画像を取得
+    const target = event.target;
+    if(target.textContent === 'news'){
+      event.target.classList.add('is-active');
+      console.log(typeof(newsTabs[1]));
+      newsTabs[1].classList.remove('is-active');
+      newsTabs[2].classList.remove('is-active');
+      
+    } else if (event.target.textContent === 'economy'){
+      console.log('economy');
+      event.target.classList.add('is-active');
+      newsTabs[0].classList.remove('is-active');
+      newsTabs[2].classList.remove('is-active');
+    } else if (event.target.textContent === 'sports'){
+      console.log('sports');
+      event.target.classList.add('is-active');
+      newsTabs[0].classList.remove('is-active');
+      newsTabs[1].classList.remove('is-active');
+    }
+  });
+}
 
 const getData = () => {
   return new Promise((resolve)=> {

@@ -1,110 +1,127 @@
-{ "data": [
+{
+  "data": [
     {
-      "cat": "news",
-      "is-defaultActive": true,
+      "category": "news",
+      "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6a",
+      "isActive": true,
       "image": {
-          "img": "img/news.png",
-          "alt": "newsの画像"
+        "img": "img/news.png",
+        "alt": "newsの画像"
       },
       "article": {
-          "article1": {
-              "title": "ニュース1タイトルニュース1タイトル",
-              "url": "news/article1.html",
-              "commentCount": 99,
-              "is_new": true
-          },
-          "article2": {
-              "title": "ニュース2タイトルニュース2タイトル",
-              "url": "news/article1.html",
-              "commentCount": 0,
-              "is_new": true
-          },
-          "article3": {
-              "title": "ニュース3タイトルニュース3タイトル",
-              "url": "news/article1.html",
-              "commentCount": 32,
-              "is_new": false
-          },
-          "article4": {
-              "title": "ニュース3タイトルニュース3タイトル",
-              "url": "news/article1.html",
-              "commentCount": 32,
-              "is_new": false
-          }
+        "article1": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb7a",
+          "title": "ニュース1タイトルニュース1タイトル",
+          "url": "news/article1.html",
+          "commentCount": 99,
+          "is_new": true
+        },
+        "article2": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb7b",
+          "title": "ニュース2タイトルニュース2タイトル",
+          "url": "news/article1.html",
+          "commentCount": 0,
+          "is_new": true
+        },
+        "article3": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb7c",
+          "title": "ニュース3タイトルニュース3タイトル",
+          "url": "news/article1.html",
+          "commentCount": 32,
+          "is_new": false
+        },
+        "article4": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb7d",
+          "title": "ニュース4タイトルニュース4タイトル",
+          "url": "news/article1.html",
+          "commentCount": 32,
+          "is_new": false
+        }
       }
     },
     {
-      "cat": "economy",
-      "is-defaultActive": false,
+      "category": "economy",
+      "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6b",
+      "isActive": false,
       "image": {
-          "img": "img/news.png",
-          "alt": "newsの画像"
+        "img": "img/news.png",
+        "alt": "newsの画像"
       },
       "article": {
-          "article1": {
-              "title": "ニュース1タイトルニュース1タイトル",
-              "url": "news/article1.html",
-              "commentCount": 99,
-              "is_new": true
-          },
-          "article2": {
-              "title": "ニュース2タイトルニュース2タイトル",
-              "url": "news/article1.html",
-              "commentCount": 0,
-              "is_new": true
-          },
-          "article3": {
-              "title": "ニュース3タイトルニュース3タイトル",
-              "url": "news/article1.html",
-              "commentCount": 32,
-              "is_new": false
-          },
-          "article4": {
-              "title": "ニュース3タイトルニュース3タイトル",
-              "url": "news/article1.html",
-              "commentCount": 32,
-              "is_new": false
-          }
+        "article1": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb8a",
+          "title": "ニュース1タイトルニュース1タイトル",
+          "url": "news/article1.html",
+          "commentCount": 99,
+          "is_new": true
+        },
+        "article2": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb8b",
+          "title": "ニュース2タイトルニュース2タイトル",
+          "url": "news/article1.html",
+          "commentCount": 0,
+          "is_new": true
+        },
+        "article3": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb8c",
+          "title": "ニュース3タイトルニュース3タイトル",
+          "url": "news/article1.html",
+          "commentCount": 32,
+          "is_new": false
+        },
+        "article4": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb8d",
+          "title": "ニュース4タイトルニュース4タイトル",
+          "url": "news/article1.html",
+          "commentCount": 32,
+          "is_new": false
+        }
       }
     },
     {
-      "cat": "sports",
-      "is-defaultActive": false,
+      "category": "sports",
+      "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6c",
+      "isActive": false,
       "image": {
-          "img": "img/sports.png",
-          "alt": "sportsの画像"
+        "img": "img/sports.png",
+        "alt": "sportsの画像"
       },
       "article": {
-          "article1": {
-              "title": "ニュース1タイトルニュース1タイトル",
-              "url": "news/article1.html",
-              "commentCount": 99,
-              "is_new": true
-          },
-          "article2": {
-              "title": "ニュース2タイトルニュース2タイトル",
-              "url": "news/article1.html",
-              "commentCount": 0,
-              "is_new": true
-          },
-          "article3": {
-              "title": "ニュース3タイトルニュース3タイトル",
-              "url": "news/article1.html",
-              "commentCount": 32,
-              "is_new": true
-          },
-          "article4": {
-              "title": "ニュース3タイトルニュース3タイトル",
-              "url": "news/article1.html",
-              "commentCount": 32,
-              "is_new": false
-          },
-          "article5": {
-              "title": "ニュース3タイトルニュース3タイトル",
-              "url": "news/article1.html",
-              "commentCount": 1207,
-              "is_new": true
-          }
+        "article1": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb9a",
+          "title": "ニュース1タイトルニュース1タイトル",
+          "url": "news/article1.html",
+          "commentCount": 99,
+          "is_new": true
+        },
+        "article2": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb9b",
+          "title": "ニュース2タイトルニュース2タイトル",
+          "url": "news/article1.html",
+          "commentCount": 0,
+          "is_new": true
+        },
+        "article3": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb9c",
+          "title": "ニュース3タイトルニュース3タイトル",
+          "url": "news/article1.html",
+          "commentCount": 32,
+          "is_new": true
+        },
+        "article4": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb9d",
+          "title": "ニュース4タイトルニュース4タイトル",
+          "url": "news/article1.html",
+          "commentCount": 32,
+          "is_new": false
+        },
+        "article5": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb9e",
+          "title": "ニュース5タイトルニュース5タイトル",
+          "url": "news/article1.html",
+          "commentCount": 1207,
+          "is_new": true
+        }
       }
     }
   ]

@@ -1,16 +1,20 @@
-.tabs {
+/* .tabs {
   margin-top: 50px;
   padding-bottom: 40px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   width: 600px;
   margin: 0 auto;
-}
-
-.news_Tabs{
-  display: flex;
+} */
+.news {
   width: 600px;
   margin: 0 auto;
+}
+.news_Tabs{
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 0;
 }
 .tab_item {
   width: calc(100%/3);
@@ -60,4 +64,19 @@ input[name="tab_item"] {
 .tab_item.is-active {
   background-color: #5ab4bd;
   color: #fff;
+}
+
+.news_Wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.news_Lists {
+  list-style: none;
+  padding-left: 0;
+}
+.news_Img {
+  background-color: pink;
+  width: 150px;
+  height: 150px;
 }
