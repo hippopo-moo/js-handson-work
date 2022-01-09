@@ -5,7 +5,7 @@
       "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6a",
       "isActive": true,
       "image": {
-        "img": "img/news.png",
+        "img": "./img/news.png",
         "alt": "newsの画像"
       },
       "article": {
@@ -44,7 +44,7 @@
       "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6b",
       "isActive": false,
       "image": {
-        "img": "img/news.png",
+        "img": "./img/economy.png",
         "alt": "newsの画像"
       },
       "article": {
@@ -83,7 +83,7 @@
       "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6c",
       "isActive": false,
       "image": {
-        "img": "img/sports.png",
+        "img": "./img/sports.png",
         "alt": "sportsの画像"
       },
       "article": {

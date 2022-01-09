@@ -23,13 +23,20 @@ const createNewsContent = (allData)=> {
   const lists = document.createElement("ul");
   lists.classList.add("news_Lists");
   const primaryImageWrapper = document.createElement("div");
-  primaryImageWrapper.classList.add("news_Img");
+  // primaryImageWrapper.classList.add("news_Img");
+  // const img = document.createElement("img");
+  // img.src = "./img/news.png"
+  // primaryImageWrapper.appendChild(img);
   primaryElement.appendChild(lists);
   primaryElement.appendChild(primaryImageWrapper);
   newsBlock.appendChild(primaryElement);
   // console.log(allData);
   allData.forEach((content, index)=>{
     if(content.isActive){
+      primaryImageWrapper.classList.add("news_Img");
+      const img = document.createElement("img");
+      img.src = content.image.img;
+      primaryImageWrapper.appendChild(img);
       Object.keys(content.article).forEach((key)=>{
         const li = document.createElement('li');
         const a = document.createElement('a');
@@ -52,10 +59,13 @@ const createNewsContent = (allData)=> {
     const target = event.target;
     if(target.textContent === 'news'){
       event.target.classList.add('is-active');
-      console.log(typeof(newsTabs[1]));
+      console.log(typeof(newsTabs[0]));
+      console.log(newsTabs[0]);
+      console.log(newsTabs[1]);
+      console.log(newsTabs[2]);
       newsTabs[1].classList.remove('is-active');
       newsTabs[2].classList.remove('is-active');
-      
+
     } else if (event.target.textContent === 'economy'){
       console.log('economy');
       event.target.classList.add('is-active');
@@ -94,7 +104,7 @@ const createList = async ({data}) => {
     const img = document.createElement('img');
     img.src = element.img;
     img.alt = element.alt;
-    fragment.appendChild(li).appendChild(a).insertBefore(img, a.firstChild);  
+    fragment.appendChild(li).appendChild(a).insertBefore(img, a.firstChild);
   });
   ul.appendChild(fragment);
 }
@@ -125,6 +135,6 @@ init();
 //   const inputNum = document.getElementById("js-input-number").value;
 //   const inputName = document.getElementById("js-input-name").value;
 //   e.preventDefault();
-//   init(inputNum,inputName); 
+//   init(inputNum,inputName);
 // });
 
