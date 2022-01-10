@@ -52,28 +52,28 @@
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb8a",
           "title": "ニュース1タイトルニュース1タイトル",
           "url": "news/article1.html",
-          "commentCount": 99,
+          "commentCount": 999,
           "is_new": true
         },
         "article2": {
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb8b",
           "title": "ニュース2タイトルニュース2タイトル",
           "url": "news/article1.html",
-          "commentCount": 0,
+          "commentCount": 100,
           "is_new": true
         },
         "article3": {
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb8c",
           "title": "ニュース3タイトルニュース3タイトル",
           "url": "news/article1.html",
-          "commentCount": 32,
+          "commentCount": 50,
           "is_new": false
         },
         "article4": {
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb8d",
           "title": "ニュース4タイトルニュース4タイトル",
           "url": "news/article1.html",
-          "commentCount": 32,
+          "commentCount": 11,
           "is_new": false
         }
       }
