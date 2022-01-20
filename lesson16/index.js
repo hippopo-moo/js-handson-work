@@ -1,4 +1,3 @@
-// import { v4 as uuidv4 } from 'uuid';
 // const url = 'https://jsondata.okiba.me/v1/json/cp3sC210927201738';
 const url = "test.json";
 let allData = {};
@@ -44,6 +43,9 @@ const createNewsContent = (allData)=> {
         const comment = document.createElement('span');
         a.href = content.article[key].url;
         a.textContent = content.article[key].title;
+        const commentIcon = document.createElement('img');
+        commentIcon.src = "./img/icon_comment.png";
+        a.appendChild(commentIcon);
         comment.textContent = content.article[key].commentCount;
         li.appendChild(a);
         li.appendChild(comment);
@@ -74,7 +76,6 @@ const createNewsContent = (allData)=> {
       img.src = allData[0].image.img;
       img.alt = allData[0].image.alt;
       imgWrapper.appendChild(img);
-      console.log(img);
 
       newsList.innerHTML = "";
       Object.keys(allData[0].article).forEach((key)=>{
@@ -83,6 +84,9 @@ const createNewsContent = (allData)=> {
         const comment = document.createElement('span');
         a.href = allData[0].article[key].url;
         a.textContent = allData[0].article[key].title;
+        const commentIcon = document.createElement('img');
+        commentIcon.src = "./img/icon_comment.png";
+        a.appendChild(commentIcon);
         comment.textContent = allData[0].article[key].commentCount;
         li.appendChild(a);
         li.appendChild(comment);
@@ -106,7 +110,6 @@ const createNewsContent = (allData)=> {
       img.src = allData[1].image.img;
       img.alt = allData[1].image.alt;
       imgWrapper.appendChild(img);
-      console.log(img);
 
       newsList.innerHTML = "";
       Object.keys(allData[1].article).forEach((key)=>{
@@ -115,6 +118,9 @@ const createNewsContent = (allData)=> {
         const comment = document.createElement('span');
         a.href = allData[1].article[key].url;
         a.textContent = allData[1].article[key].title;
+        const commentIcon = document.createElement('img');
+        commentIcon.src = "./img/icon_comment.png";
+        a.appendChild(commentIcon);
         comment.textContent = allData[1].article[key].commentCount;
         li.appendChild(a);
         li.appendChild(comment);
@@ -138,7 +144,6 @@ const createNewsContent = (allData)=> {
       img.src = allData[2].image.img;
       img.alt = allData[2].image.alt;
       imgWrapper.appendChild(img);
-      console.log(img);
 
       newsList.innerHTML = "";
       Object.keys(allData[2].article).forEach((key)=>{
@@ -147,6 +152,9 @@ const createNewsContent = (allData)=> {
         const comment = document.createElement('span');
         a.href = allData[2].article[key].url;
         a.textContent = allData[2].article[key].title;
+        const commentIcon = document.createElement('img');
+        commentIcon.src = "./img/icon_comment.png";
+        a.appendChild(commentIcon);
         comment.textContent = allData[2].article[key].commentCount;
         li.appendChild(a);
         li.appendChild(comment);
@@ -204,7 +212,6 @@ const init = async (inputNum,inputName) => {
   // createLoadingImage();
   const response = await getData();
   allData = await response.json();
-  console.log(allData);
   createNewsTabs(allData.data);
   createNewsContent(allData.data);
 }

@@ -14,28 +14,32 @@
           "title": "ニュース1タイトルニュース1タイトル",
           "url": "news/article1.html",
           "commentCount": 99,
-          "is_new": true
+          "is_new": true,
+          "publishedDate":"2021/12/31"
         },
         "article2": {
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb7b",
           "title": "ニュース2タイトルニュース2タイトル",
           "url": "news/article1.html",
           "commentCount": 0,
-          "is_new": true
+          "is_new": true,
+          "publishedDate":"2021/01/07"
         },
         "article3": {
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb7c",
           "title": "ニュース3タイトルニュース3タイトル",
           "url": "news/article1.html",
           "commentCount": 32,
-          "is_new": false
+          "is_new": false,
+          "publishedDate":"2021/01/07"
         },
         "article4": {
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb7d",
           "title": "ニュース4タイトルニュース4タイトル",
           "url": "news/article1.html",
           "commentCount": 32,
-          "is_new": false
+          "is_new": false,
+          "publishedDate":"2021/01/14"
         }
       }
     },
@@ -53,28 +57,32 @@
           "title": "ニュース1タイトルニュース1タイトル",
           "url": "news/article1.html",
           "commentCount": 999,
-          "is_new": true
+          "is_new": true,
+          "publishedDate":"2021/01/07"
         },
         "article2": {
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb8b",
           "title": "ニュース2タイトルニュース2タイトル",
           "url": "news/article1.html",
           "commentCount": 100,
-          "is_new": true
+          "is_new": true,
+          "publishedDate":"2021/01/14"
         },
         "article3": {
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb8c",
           "title": "ニュース3タイトルニュース3タイトル",
           "url": "news/article1.html",
           "commentCount": 50,
-          "is_new": false
+          "is_new": false,
+          "publishedDate":"2021/01/15"
         },
         "article4": {
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb8d",
           "title": "ニュース4タイトルニュース4タイトル",
           "url": "news/article1.html",
           "commentCount": 11,
-          "is_new": false
+          "is_new": false,
+          "publishedDate":"2021/01/16"
         }
       }
     },
@@ -92,35 +100,40 @@
           "title": "ニュース1タイトルニュース1タイトル",
           "url": "news/article1.html",
           "commentCount": 99,
-          "is_new": true
+          "is_new": true,
+          "publishedDate":"2021/01/07"
         },
         "article2": {
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb9b",
           "title": "ニュース2タイトルニュース2タイトル",
           "url": "news/article1.html",
           "commentCount": 0,
-          "is_new": true
+          "is_new": true,
+          "publishedDate":"2021/01/08"
         },
         "article3": {
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb9c",
           "title": "ニュース3タイトルニュース3タイトル",
           "url": "news/article1.html",
           "commentCount": 32,
-          "is_new": true
+          "is_new": true,
+          "publishedDate":"2021/01/15"
         },
         "article4": {
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb9d",
           "title": "ニュース4タイトルニュース4タイトル",
           "url": "news/article1.html",
           "commentCount": 32,
-          "is_new": false
+          "is_new": false,
+          "publishedDate":"2021/01/07"
         },
         "article5": {
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb9e",
           "title": "ニュース5タイトルニュース5タイトル",
           "url": "news/article1.html",
           "commentCount": 1207,
-          "is_new": true
+          "is_new": true,
+          "publishedDate":"2021/01/07"
         }
       }
     }
