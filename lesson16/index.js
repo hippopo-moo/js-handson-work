@@ -18,15 +18,12 @@ const createNewsTabs = (allData)=> {
 }
 
 const createNewsContent = (allData)=> {
+  // 初期表示用の処理
   const primaryElement = document.createElement("div");
   primaryElement.classList.add("news_Wrapper");
   const lists = document.createElement("ul");
   lists.classList.add("news_Lists");
   const primaryImageWrapper = document.createElement("div");
-  // primaryImageWrapper.classList.add("news_Img");
-  // const img = document.createElement("img");
-  // img.src = "./img/news.png"
-  // primaryImageWrapper.appendChild(img);
   primaryElement.appendChild(lists);
   primaryElement.appendChild(primaryImageWrapper);
   newsBlock.appendChild(primaryElement);
@@ -37,25 +34,12 @@ const createNewsContent = (allData)=> {
       const img = document.createElement("img");
       img.src = content.image.img;
       primaryImageWrapper.appendChild(img);
-      Object.keys(content.article).forEach((key)=>{
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        const comment = document.createElement('span');
-        a.href = content.article[key].url;
-        a.textContent = content.article[key].title;
-        const commentIcon = document.createElement('img');
-        commentIcon.src = "./img/icon_comment.png";
-        a.appendChild(commentIcon);
-        comment.textContent = content.article[key].commentCount;
-        li.appendChild(a);
-        li.appendChild(comment);
-        lists.appendChild(li);
-        if(content.article[key].is_new){
-          console.log('new article');
-        }
-      })
+
+      renderNewsList(content, lists);
     }
   })
+
+  // タブクリック時の処理
   newsTabs.addEventListener('click', (event)=>{
     // event.targetにis-activeをつける
     // event.targetのidを取得し、それに紐づく記事と画像を取得
@@ -67,8 +51,6 @@ const createNewsContent = (allData)=> {
       tabsItems[1].classList.remove('is-active');
       tabsItems[2].classList.remove('is-active');
       console.log(allData[0])
-      const newsList = document.querySelector('.news_Lists');
-      console.log(newsList)
 
       const imgWrapper = document.querySelector('.news_Img');
       imgWrapper.innerHTML = "";
@@ -77,24 +59,7 @@ const createNewsContent = (allData)=> {
       img.alt = allData[0].image.alt;
       imgWrapper.appendChild(img);
 
-      newsList.innerHTML = "";
-      Object.keys(allData[0].article).forEach((key)=>{
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        const comment = document.createElement('span');
-        a.href = allData[0].article[key].url;
-        a.textContent = allData[0].article[key].title;
-        const commentIcon = document.createElement('img');
-        commentIcon.src = "./img/icon_comment.png";
-        a.appendChild(commentIcon);
-        comment.textContent = allData[0].article[key].commentCount;
-        li.appendChild(a);
-        li.appendChild(comment);
-        lists.appendChild(li);
-        if(allData[0].article[key].is_new){
-          console.log('new article');
-        }
-      })
+      renderNewsList(allData[0], lists);
 
     } else if (event.target.textContent === 'economy'){
       console.log('economy');
@@ -102,7 +67,6 @@ const createNewsContent = (allData)=> {
       tabsItems[0].classList.remove('is-active');
       tabsItems[2].classList.remove('is-active');
       console.log(allData[1])
-      const newsList = document.querySelector('.news_Lists');
 
       const imgWrapper = document.querySelector('.news_Img');
       imgWrapper.innerHTML = "";
@@ -111,32 +75,15 @@ const createNewsContent = (allData)=> {
       img.alt = allData[1].image.alt;
       imgWrapper.appendChild(img);
 
-      newsList.innerHTML = "";
-      Object.keys(allData[1].article).forEach((key)=>{
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        const comment = document.createElement('span');
-        a.href = allData[1].article[key].url;
-        a.textContent = allData[1].article[key].title;
-        const commentIcon = document.createElement('img');
-        commentIcon.src = "./img/icon_comment.png";
-        a.appendChild(commentIcon);
-        comment.textContent = allData[1].article[key].commentCount;
-        li.appendChild(a);
-        li.appendChild(comment);
-        lists.appendChild(li);
-        if(allData[1].article[key].is_new){
-          console.log('new article');
-        }
-      })
+      renderNewsList(allData[1], lists);
 
     } else if (event.target.textContent === 'sports'){
       console.log('sports');
-      event.target.classList.add('is-active');
-      tabsItems[0].classList.remove('is-active');
-      tabsItems[1].classList.remove('is-active');
+      // event.target.classList.add('is-active');
+      // tabsItems[0].classList.remove('is-active');
+      // tabsItems[1].classList.remove('is-active');
+      tabControl(event, tabsItems);
       console.log(allData[2])
-      const newsList = document.querySelector('.news_Lists');
 
       const imgWrapper = document.querySelector('.news_Img');
       imgWrapper.innerHTML = "";
@@ -145,26 +92,39 @@ const createNewsContent = (allData)=> {
       img.alt = allData[2].image.alt;
       imgWrapper.appendChild(img);
 
-      newsList.innerHTML = "";
-      Object.keys(allData[2].article).forEach((key)=>{
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        const comment = document.createElement('span');
-        a.href = allData[2].article[key].url;
-        a.textContent = allData[2].article[key].title;
-        const commentIcon = document.createElement('img');
-        commentIcon.src = "./img/icon_comment.png";
-        a.appendChild(commentIcon);
-        comment.textContent = allData[2].article[key].commentCount;
-        li.appendChild(a);
-        li.appendChild(comment);
-        lists.appendChild(li);
-        if(allData[2].article[key].is_new){
-          console.log('new article');
-        }
-      })
+      renderNewsList(allData[2], lists);
     }
   });
+}
+
+const tabControl = ( event ,tabsItems) => {
+  event.target.classList.add('is-active');
+  tabsItems[0].classList.remove('is-active');
+  tabsItems[1].classList.remove('is-active');
+
+  // TODO 自分以外の兄弟要素のtabsItemからremoveできるようにするには？？
+}
+
+const renderNewsList = (content, lists) => {
+  const newsList = document.querySelector('.news_Lists');
+  newsList.innerHTML = "";
+  Object.keys(content.article).forEach((key)=>{
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    const comment = document.createElement('span');
+    a.href = content.article[key].url;
+    a.textContent = content.article[key].title;
+    const commentIcon = document.createElement('img');
+    commentIcon.src = "./img/icon_comment.png";
+    a.appendChild(commentIcon);
+    comment.textContent = content.article[key].commentCount;
+    li.appendChild(a);
+    li.appendChild(comment);
+    lists.appendChild(li);
+    if(content.article[key].is_new){
+      console.log('new article');
+    }
+  })
 }
 
 const getData = () => {
