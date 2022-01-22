@@ -77,10 +77,10 @@ input[name="tab_item"] {
   padding-left: 0;
 }
 .news_Img {
-  background-color: pink;
   width: 150px;
   height: 150px;
   text-align: center;
+  border: 1px solid gray;
 }
 .news_Img img {
   width: 100%;

@@ -27,7 +27,6 @@ const createNewsContent = (allData)=> {
   primaryElement.appendChild(lists);
   primaryElement.appendChild(primaryImageWrapper);
   newsBlock.appendChild(primaryElement);
-  console.log(allData);
   allData.forEach((content, index)=>{
     if(content.isActive){
       primaryImageWrapper.classList.add("news_Img");
@@ -36,6 +35,10 @@ const createNewsContent = (allData)=> {
       primaryImageWrapper.appendChild(img);
 
       renderNewsList(content, lists);
+      console.log('index: '+index);
+      const tabItem = document.querySelector('.news_Tabs .tab_item:nth-child(1)');
+      tabItem.classList.add('is-active');
+      console.log(tabItem);
     }
   })
 
@@ -44,13 +47,33 @@ const createNewsContent = (allData)=> {
     // event.targetにis-activeをつける
     // event.targetのidを取得し、それに紐づく記事と画像を取得
     const target = event.target;
-    const tabsItems = newsTabs.querySelectorAll("li");
-    console.log(allData)
+    const tabsItems = Array.from(newsTabs.querySelectorAll("li"));
+
+    // タブのindexを取得し、スタイル変更
+    tabsItems.forEach(tab => {
+      tab.addEventListener("click", (e)=>{
+        // const index = tabsItems.findIndex(tab => {
+        //   return tab === e.target;
+        // });
+        // console.log(index);
+        const activeIndex = tabsItems.filter(tab => {
+          return tab === e.target;
+        });
+        const inactiveIndex = tabsItems.filter(tab => {
+          return tab !== e.target;
+        });
+
+        activeIndex[0].classList.add('is-active');
+        console.log('addしたよ');
+        inactiveIndex.forEach(element => {
+          element.classList.remove('is-active');
+          console.log('removeしたよ');
+        });
+      })
+    });
+
     if(target.textContent === 'news'){
-      event.target.classList.add('is-active');
-      tabsItems[1].classList.remove('is-active');
-      tabsItems[2].classList.remove('is-active');
-      console.log(allData[0])
+      console.log('news');
 
       const imgWrapper = document.querySelector('.news_Img');
       imgWrapper.innerHTML = "";
@@ -63,10 +86,6 @@ const createNewsContent = (allData)=> {
 
     } else if (event.target.textContent === 'economy'){
       console.log('economy');
-      event.target.classList.add('is-active');
-      tabsItems[0].classList.remove('is-active');
-      tabsItems[2].classList.remove('is-active');
-      console.log(allData[1])
 
       const imgWrapper = document.querySelector('.news_Img');
       imgWrapper.innerHTML = "";
@@ -79,11 +98,6 @@ const createNewsContent = (allData)=> {
 
     } else if (event.target.textContent === 'sports'){
       console.log('sports');
-      // event.target.classList.add('is-active');
-      // tabsItems[0].classList.remove('is-active');
-      // tabsItems[1].classList.remove('is-active');
-      tabControl(event, tabsItems);
-      console.log(allData[2])
 
       const imgWrapper = document.querySelector('.news_Img');
       imgWrapper.innerHTML = "";
@@ -95,14 +109,6 @@ const createNewsContent = (allData)=> {
       renderNewsList(allData[2], lists);
     }
   });
-}
-
-const tabControl = ( event ,tabsItems) => {
-  event.target.classList.add('is-active');
-  tabsItems[0].classList.remove('is-active');
-  tabsItems[1].classList.remove('is-active');
-
-  // TODO 自分以外の兄弟要素のtabsItemからremoveできるようにするには？？
 }
 
 const renderNewsList = (content, lists) => {
@@ -122,7 +128,6 @@ const renderNewsList = (content, lists) => {
     li.appendChild(comment);
     lists.appendChild(li);
     if(content.article[key].is_new){
-      console.log('new article');
     }
   })
 }
