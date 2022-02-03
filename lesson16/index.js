@@ -1,5 +1,4 @@
-// const url = 'https://jsondata.okiba.me/v1/json/cp3sC210927201738';
-const url = "test.json";
+const url = 'http://myjson.dit.upm.es/api/bins/3aux';
 let allData = {};
 const newsBlock = document.querySelector('.news');
 const newsTabs = document.querySelector('.news_Tabs');
@@ -64,10 +63,8 @@ const createNewsContent = (allData)=> {
         });
 
         activeIndex[0].classList.add('is-active');
-        console.log('addしたよ');
         inactiveIndex.forEach(element => {
           element.classList.remove('is-active');
-          console.log('removeしたよ');
         });
       })
     });
@@ -120,16 +117,36 @@ const renderNewsList = (content, lists) => {
     const comment = document.createElement('span');
     a.href = content.article[key].url;
     a.textContent = content.article[key].title;
-    const commentIcon = document.createElement('img');
-    commentIcon.src = "./img/icon_comment.png";
-    a.appendChild(commentIcon);
-    comment.textContent = content.article[key].commentCount;
+    const newMark = document.createElement("span");
+    newMark.classList.add("newMark");
+    newMark.innerText = "new!";
+    const dateDiff = getDateDiff(content.article[key].publishedDate);
+    console.log(content.article[key].publishedDate);
+    console.log(dateDiff);
+    if (dateDiff < 3) {
+      a.appendChild(newMark);
+    }
+    const commentCount = content.article[key].commentCount;
+    if(commentCount > 0){
+      const commentIcon = document.createElement('img');
+      commentIcon.src = "./img/icon_comment.png";
+      a.appendChild(commentIcon);
+      comment.textContent = commentCount;
+    }
     li.appendChild(a);
     li.appendChild(comment);
     lists.appendChild(li);
-    if(content.article[key].is_new){
-    }
+
   })
+}
+
+const getDateDiff = (publishedDate) => {
+  const publishedDateValue = new Date(publishedDate);
+  const today = new Date(Date.now());
+  const date1 = new Date(publishedDate);
+  const termDay = (today - date1) / 86400000;
+  return Math.floor(termDay);
+
 }
 
 const getData = () => {

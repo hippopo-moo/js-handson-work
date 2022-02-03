@@ -87,3 +87,9 @@ input[name="tab_item"] {
   height: 100%;
   object-fit: contain;
 }
+.newMark {
+  background-color: yellow;
+  color: #565656;
+  text-decoration: none;
+  border: 1px solid orange;
+}
