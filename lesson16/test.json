@@ -5,7 +5,7 @@
       "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6a",
       "isActive": true,
       "image": {
-        "img": "./img/news.png",
+        "img": "/lesson16/img/news.png",
         "alt": "newsの画像"
       },
       "article": {
@@ -15,7 +15,7 @@
           "url": "news/article1.html",
           "commentCount": 99,
           "is_new": true,
-          "publishedDate":"2022/02/02"
+          "publishedDate":"2022/02/04"
         },
         "article2": {
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb7b",
@@ -31,7 +31,7 @@
           "url": "news/article1.html",
           "commentCount": 32,
           "is_new": false,
-          "publishedDate":"2022/01/25"
+          "publishedDate":"2022/02/04"
         },
         "article4": {
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb7d",
@@ -48,7 +48,7 @@
       "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6b",
       "isActive": false,
       "image": {
-        "img": "./img/economy.png",
+        "img": "/lesson16/img/economy.png",
         "alt": "newsの画像"
       },
       "article": {
@@ -91,7 +91,7 @@
       "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6c",
       "isActive": false,
       "image": {
-        "img": "./img/sports.png",
+        "img": "/lesson16/img/sports.png",
         "alt": "sportsの画像"
       },
       "article": {
