@@ -30,7 +30,7 @@ const createNewsContent = (allData) => {
       img.src = content.image.img;
       primaryImageWrapper.appendChild(img);
 
-      renderNewsList(content, lists);
+      renderNewsList(content);
       const tabItem = document.querySelector(
         ".news_Tabs .tab_item:nth-child(1)"
       );
@@ -63,8 +63,6 @@ const createNewsContent = (allData) => {
     });
 
     if (target.textContent === "news") {
-      console.log("news");
-
       const imgWrapper = document.querySelector(".news_Img");
       imgWrapper.innerHTML = "";
       const img = document.createElement("img");
@@ -72,10 +70,8 @@ const createNewsContent = (allData) => {
       img.alt = allData[0].image.alt;
       imgWrapper.appendChild(img);
 
-      renderNewsList(allData[0], lists);
+      renderNewsList(allData[0]);
     } else if (event.target.textContent === "economy") {
-      console.log("economy");
-
       const imgWrapper = document.querySelector(".news_Img");
       imgWrapper.innerHTML = "";
       const img = document.createElement("img");
@@ -83,10 +79,8 @@ const createNewsContent = (allData) => {
       img.alt = allData[1].image.alt;
       imgWrapper.appendChild(img);
 
-      renderNewsList(allData[1], lists);
+      renderNewsList(allData[1]);
     } else if (event.target.textContent === "sports") {
-      console.log("sports");
-
       const imgWrapper = document.querySelector(".news_Img");
       imgWrapper.innerHTML = "";
       const img = document.createElement("img");
@@ -94,28 +88,28 @@ const createNewsContent = (allData) => {
       img.alt = allData[2].image.alt;
       imgWrapper.appendChild(img);
 
-      renderNewsList(allData[2], lists);
+      renderNewsList(allData[2]);
     }
   });
 };
 
-const renderNewsList = (content, lists) => {
+const renderNewsList = (article) => {
   const newsList = document.querySelector(".news_Lists");
   newsList.innerHTML = "";
-  Object.keys(content.article).forEach((key) => {
+  Object.keys(article.article).forEach((key) => {
     const li = document.createElement("li");
     const a = document.createElement("a");
     const comment = document.createElement("span");
-    a.href = content.article[key].url;
-    a.textContent = content.article[key].title;
-    const newMark = document.createElement("span");
-    newMark.classList.add("newMark");
-    newMark.innerText = "new!";
-    const dateDiff = getDateDiff(content.article[key].publishedDate);
-    if (dateDiff < 3) {
+    a.href = article.article[key].url;
+    a.textContent = article.article[key].title;
+    const dateDiff = getDateDiff(article.article[key].publishedDate);
+    if (dateDiff < 10) {
+      const newMark = document.createElement("span");
+      newMark.classList.add("newMark");
+      newMark.innerText = "new!";
       a.appendChild(newMark);
     }
-    const commentCount = content.article[key].commentCount;
+    const commentCount = article.article[key].commentCount;
     if (commentCount > 0) {
       const commentIcon = document.createElement("img");
       commentIcon.src = "./lesson16/img/icon_comment.png";
@@ -124,7 +118,7 @@ const renderNewsList = (content, lists) => {
     }
     li.appendChild(a);
     li.appendChild(comment);
-    lists.appendChild(li);
+    newsList.appendChild(li);
   });
 };
 
@@ -148,10 +142,10 @@ const getData = () => {
   });
 };
 
-const init = async (inputNum, inputName) => {
+const init = async () => {
   // createLoadingImage();
   const response = await getData();
-  allData = await response.json();
+  const allData = await response.json();
   createNewsTabs(allData.data);
   createNewsContent(allData.data);
 };
