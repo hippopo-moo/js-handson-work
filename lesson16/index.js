@@ -8,6 +8,7 @@ const createNewsTabs = (allData) => {
   allData.forEach((content, index) => {
     const li = document.createElement("li");
     li.classList.add("tab_item");
+    li.id = content.category;
     li.textContent = content.category;
     newsTabs.appendChild(li);
   });
@@ -43,55 +44,38 @@ const createNewsContent = (allData) => {
     // event.targetにis-activeをつける
     // event.targetのidを取得し、それに紐づく記事と画像を取得
     const target = event.target;
-    const tabsItems = Array.from(newsTabs.querySelectorAll("li"));
 
     // タブのindexを取得し、スタイル変更
-    tabsItems.forEach((tab) => {
-      tab.addEventListener("click", (e) => {
-        const activeIndex = tabsItems.filter((tab) => {
-          return tab === e.target;
-        });
-        const inactiveIndex = tabsItems.filter((tab) => {
-          return tab !== e.target;
-        });
-
-        activeIndex[0].classList.add("is-active");
-        inactiveIndex.forEach((element) => {
-          element.classList.remove("is-active");
-        });
-      });
-    });
+    const activeTab = newsTabs.querySelector(".is-active");
+    activeTab.classList.remove("is-active");
+    target.classList.add('is-active');
 
     if (target.textContent === "news") {
-      const imgWrapper = document.querySelector(".news_Img");
-      imgWrapper.innerHTML = "";
-      const img = document.createElement("img");
-      img.src = allData[0].image.img;
-      img.alt = allData[0].image.alt;
-      imgWrapper.appendChild(img);
+      const targetData = allData.find((d) => d.category === target.id);
+      setCategoryImage(targetData);
+      renderNewsList(targetData);
 
-      renderNewsList(allData[0]);
     } else if (event.target.textContent === "economy") {
-      const imgWrapper = document.querySelector(".news_Img");
-      imgWrapper.innerHTML = "";
-      const img = document.createElement("img");
-      img.src = allData[1].image.img;
-      img.alt = allData[1].image.alt;
-      imgWrapper.appendChild(img);
+      const targetData = allData.find((d) => d.category === target.id);
+      setCategoryImage(targetData);
+      renderNewsList(targetData);
 
-      renderNewsList(allData[1]);
     } else if (event.target.textContent === "sports") {
-      const imgWrapper = document.querySelector(".news_Img");
-      imgWrapper.innerHTML = "";
-      const img = document.createElement("img");
-      img.src = allData[2].image.img;
-      img.alt = allData[2].image.alt;
-      imgWrapper.appendChild(img);
-
-      renderNewsList(allData[2]);
+      const targetData = allData.find((d) => d.category === target.id);
+      setCategoryImage(targetData);
+      renderNewsList(targetData);
     }
   });
 };
+
+const setCategoryImage = (targetData) => {
+  const imgWrapper = document.querySelector(".news_Img");
+  imgWrapper.innerHTML = "";
+  const img = document.createElement("img");
+  img.src = targetData.image.img;
+  img.alt = targetData.image.alt;
+  imgWrapper.appendChild(img);
+}
 
 const renderNewsList = (article) => {
   const newsList = document.querySelector(".news_Lists");
