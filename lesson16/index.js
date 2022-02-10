@@ -1,5 +1,5 @@
-const url = "https://myjson.dit.upm.es/api/bins/hyv9";
-let allData = {};
+// const url = "https://myjson.dit.upm.es/api/bins/hyv9";
+const url = "https://myjson.dit.upm.es/api/bins/d9vx";
 const newsBlock = document.querySelector(".news");
 const newsTabs = document.querySelector(".news_Tabs");
 
@@ -87,7 +87,7 @@ const renderNewsList = (article) => {
       newMark.innerText = "new!";
       a.appendChild(newMark);
     }
-    const commentCount = article.article[key].commentCount;
+    const commentCount = article.article[key].comment.length;
     if (commentCount > 0) {
       const commentIcon = document.createElement("img");
       commentIcon.src = "/lesson16/img/icon_comment.png";
@@ -120,7 +120,6 @@ const getData = () => {
 };
 
 const init = async () => {
-  // createLoadingImage();
   const response = await getData();
   const allData = await response.json();
   createNewsTabs(allData.data);
