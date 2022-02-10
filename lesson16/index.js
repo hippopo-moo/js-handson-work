@@ -1,4 +1,4 @@
-const url = "https://myjson.dit.upm.es/api/bins/hmd9";
+const url = "https://myjson.dit.upm.es/api/bins/hyv9";
 let allData = {};
 const newsBlock = document.querySelector(".news");
 const newsTabs = document.querySelector(".news_Tabs");
