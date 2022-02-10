@@ -1,4 +1,3 @@
-// const url = "https://myjson.dit.upm.es/api/bins/3aux";
 const url = "https://myjson.dit.upm.es/api/bins/hmd9";
 let allData = {};
 const newsBlock = document.querySelector(".news");
@@ -24,20 +23,15 @@ const createNewsContent = (allData) => {
   primaryElement.appendChild(lists);
   primaryElement.appendChild(primaryImageWrapper);
   newsBlock.appendChild(primaryElement);
-  allData.forEach((content, index) => {
-    if (content.isActive) {
-      primaryImageWrapper.classList.add("news_Img");
-      const img = document.createElement("img");
-      img.src = content.image.img;
-      primaryImageWrapper.appendChild(img);
 
-      renderNewsList(content);
-      const tabItem = document.querySelector(
-        ".news_Tabs .tab_item:nth-child(1)"
-      );
-      tabItem.classList.add("is-active");
-    }
-  });
+  const selectedData = allData.find((data) => data.isActive === true);
+  primaryImageWrapper.classList.add("news_Img");
+  const img = document.createElement("img");
+  img.src = selectedData.image.img;
+  primaryImageWrapper.appendChild(img);
+
+  renderNewsList(selectedData);
+  document.getElementById(selectedData.category).classList.add("is-active");
 
   // タブクリック時の処理
   newsTabs.addEventListener("click", (event) => {
@@ -96,7 +90,7 @@ const renderNewsList = (article) => {
     const commentCount = article.article[key].commentCount;
     if (commentCount > 0) {
       const commentIcon = document.createElement("img");
-      commentIcon.src = "./lesson16/img/icon_comment.png";
+      commentIcon.src = "/lesson16/img/icon_comment.png";
       a.appendChild(commentIcon);
       comment.textContent = commentCount;
     }
@@ -107,7 +101,6 @@ const renderNewsList = (article) => {
 };
 
 const getDateDiff = (publishedDate) => {
-  // const publishedDateValue = new Date(publishedDate);
   const today = new Date(Date.now());
   const date1 = new Date(publishedDate);
   const termDay = (today - date1) / 86400000;
