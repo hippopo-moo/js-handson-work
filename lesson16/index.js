@@ -1,7 +1,7 @@
 // const url = "https://myjson.dit.upm.es/api/bins/hyv9";
 const url = "https://myjson.dit.upm.es/api/bins/d9vx";
-const newsBlock = document.querySelector(".news");
-const newsTabs = document.querySelector(".news_Tabs");
+const newsBlock = document.getElementById("news");
+const newsTabs = document.getElementById("news_Tabs");
 
 const createNewsTabs = (allData) => {
   allData.forEach((content, index) => {
@@ -19,6 +19,7 @@ const createNewsContent = (allData) => {
   primaryElement.classList.add("news_Wrapper");
   const lists = document.createElement("ul");
   lists.classList.add("news_Lists");
+  lists.id = 'news_Lists';
   const primaryImageWrapper = document.createElement("div");
   primaryElement.appendChild(lists);
   primaryElement.appendChild(primaryImageWrapper);
@@ -26,6 +27,7 @@ const createNewsContent = (allData) => {
 
   const selectedData = allData.find((data) => data.isActive === true);
   primaryImageWrapper.classList.add("news_Img");
+  primaryImageWrapper.id = 'news_Img';
   const img = document.createElement("img");
   img.src = selectedData.image.img;
   primaryImageWrapper.appendChild(img);
@@ -51,7 +53,7 @@ const createNewsContent = (allData) => {
 };
 
 const setCategoryImage = (targetData) => {
-  const imgWrapper = document.querySelector(".news_Img");
+  const imgWrapper = document.getElementById("news_Img");
   imgWrapper.innerHTML = "";
   const img = document.createElement("img");
   img.src = targetData.image.img;
@@ -60,7 +62,7 @@ const setCategoryImage = (targetData) => {
 }
 
 const renderNewsList = (article) => {
-  const newsList = document.querySelector(".news_Lists");
+  const newsList = document.getElementById("news_Lists");
   newsList.innerHTML = "";
   Object.keys(article.article).forEach((key) => {
     const li = document.createElement("li");
@@ -69,7 +71,7 @@ const renderNewsList = (article) => {
     a.href = article.article[key].url;
     a.textContent = article.article[key].title;
     const dateDiff = getDateDiff(article.article[key].publishedDate);
-    if (dateDiff < 10) {
+    if (dateDiff < 14) {
       const newMark = document.createElement("span");
       newMark.classList.add("newMark");
       newMark.innerText = "new!";
