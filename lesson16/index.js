@@ -34,22 +34,6 @@ const createNewsContent = (allData) => {
 
   renderNewsList(selectedData);
   document.getElementById(selectedData.category).classList.add("is-active");
-
-  // タブクリック時の処理
-  // newsTabs.addEventListener("click", (event) => {
-  //   // event.targetにis-activeをつける
-  //   // event.targetのidを取得し、それに紐づく記事と画像を取得
-  //   const target = event.target;
-
-  //   // タブのindexを取得し、スタイル変更
-  //   const activeTab = newsTabs.querySelector(".is-active");
-  //   activeTab.classList.remove("is-active");
-  //   target.classList.add('is-active');
-
-  //   const targetData = allData.find((d) => d.category === event.target.id);
-  //   setCategoryImage(targetData);
-  //   renderNewsList(targetData);
-  // });
 };
 
 const setTabClickEvent = (allData) => {
