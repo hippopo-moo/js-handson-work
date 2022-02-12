@@ -44,21 +44,9 @@ const createNewsContent = (allData) => {
     activeTab.classList.remove("is-active");
     target.classList.add('is-active');
 
-    if (target.textContent === "news") {
-      const targetData = allData.find((d) => d.category === target.id);
-      setCategoryImage(targetData);
-      renderNewsList(targetData);
-
-    } else if (event.target.textContent === "economy") {
-      const targetData = allData.find((d) => d.category === target.id);
-      setCategoryImage(targetData);
-      renderNewsList(targetData);
-
-    } else if (event.target.textContent === "sports") {
-      const targetData = allData.find((d) => d.category === target.id);
-      setCategoryImage(targetData);
-      renderNewsList(targetData);
-    }
+    const targetData = allData.find((d) => d.category === event.target.id);
+    setCategoryImage(targetData);
+    renderNewsList(targetData);
   });
 };
 
