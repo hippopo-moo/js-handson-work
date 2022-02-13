@@ -10,6 +10,9 @@ const createNewsTabs = (allData) => {
     li.id = content.category;
     li.textContent = content.category;
     newsTabs.appendChild(li);
+    if(content.isActive === true){
+      li.classList.add("is-active");
+    }
   });
 };
 
@@ -33,7 +36,6 @@ const createNewsContent = (allData) => {
   primaryImageWrapper.appendChild(img);
 
   renderNewsList(selectedData);
-  document.getElementById(selectedData.category).classList.add("is-active");
 };
 
 const setTabClickEvent = (allData) => {
