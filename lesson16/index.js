@@ -10,9 +10,7 @@ const createNewsTabs = (allData) => {
     li.id = content.category;
     li.textContent = content.category;
     newsTabs.appendChild(li);
-    if(content.isActive){
-      li.classList.add("is-active");
-    }
+    content.isActive && li.classList.add("is-active");
   });
 };
 
