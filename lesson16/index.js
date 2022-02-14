@@ -66,23 +66,23 @@ const setCategoryImage = (targetData) => {
   imgWrapper.appendChild(img);
 }
 
-const renderNewsList = (article) => {
+const renderNewsList = ({article}) => {
   const newsList = document.getElementById("news_Lists");
   newsList.innerHTML = "";
-  Object.keys(article.article).forEach((key) => {
+  Object.keys(article).forEach((key) => {
     const li = document.createElement("li");
     const a = document.createElement("a");
     const comment = document.createElement("span");
-    a.href = article.article[key].url;
-    a.textContent = article.article[key].title;
-    const dateDiff = getDateDiff(article.article[key].publishedDate);
+    a.href = article[key].url;
+    a.textContent = article[key].title;
+    const dateDiff = getDateDiff(article[key].publishedDate);
     if (dateDiff < 14) {
       const newMark = document.createElement("span");
       newMark.classList.add("newMark");
       newMark.innerText = "new!";
       a.appendChild(newMark);
     }
-    const commentCount = article.article[key].comment.length;
+    const commentCount = article[key].comment.length;
     if (commentCount > 0) {
       const commentIcon = document.createElement("img");
       commentIcon.src = "/lesson16/img/icon_comment.png";
