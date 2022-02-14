@@ -72,7 +72,7 @@ const renderNewsList = ({article}) => {
   Object.keys(article).forEach((key) => {
     const li = document.createElement("li");
     const a = document.createElement("a");
-    const comment = document.createElement("span");
+    // const comment = document.createElement("span");
     a.href = article[key].url;
     a.textContent = article[key].title;
     const dateDiff = getDateDiff(article[key].publishedDate);
@@ -82,15 +82,16 @@ const renderNewsList = ({article}) => {
       newMark.innerText = "new!";
       a.appendChild(newMark);
     }
+    li.appendChild(a);
     const commentCount = article[key].comment.length;
     if (commentCount > 0) {
+      const comment = document.createElement("span");
       const commentIcon = document.createElement("img");
       commentIcon.src = "/lesson16/img/icon_comment.png";
       a.appendChild(commentIcon);
       comment.textContent = commentCount;
+      li.appendChild(comment);
     }
-    li.appendChild(a);
-    li.appendChild(comment);
     newsList.appendChild(li);
   });
 };
