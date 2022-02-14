@@ -10,7 +10,7 @@ const createNewsTabs = (allData) => {
     li.id = content.category;
     li.textContent = content.category;
     newsTabs.appendChild(li);
-    if(content.isActive === true){
+    if(content.isActive){
       li.classList.add("is-active");
     }
   });
@@ -28,7 +28,7 @@ const createNewsContent = (allData) => {
   primaryElement.appendChild(primaryImageWrapper);
   newsBlock.appendChild(primaryElement);
 
-  const selectedData = allData.find((data) => data.isActive === true);
+  const selectedData = allData.find((data) => data.isActive);
   primaryImageWrapper.classList.add("news_Img");
   primaryImageWrapper.id = 'news_Img';
   const img = document.createElement("img");
