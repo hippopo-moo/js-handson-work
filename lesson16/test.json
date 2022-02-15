@@ -28,7 +28,7 @@
             }
           ],
           "is_new": true,
-          "publishedDate":"2022/02/04"
+          "publishedDate":"2022/02/15"
         },
         "article2": {
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb7b",
@@ -37,7 +37,7 @@
           "comment": [
           ],
           "is_new": true,
-          "publishedDate":"2022/02/02"
+          "publishedDate":"2022/02/15"
         },
         "article3": {
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb7c",
@@ -70,7 +70,7 @@
             }
           ],
           "is_new": false,
-          "publishedDate":"2022/02/04"
+          "publishedDate":"2022/02/15"
         },
         "article4": {
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb7d",
@@ -123,7 +123,7 @@
             }
           ],
           "is_new": true,
-          "publishedDate":"2022/02/03"
+          "publishedDate":"2022/02/15"
         },
         "article2": {
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb8b",
@@ -295,7 +295,7 @@
             }
           ],
           "is_new": true,
-          "publishedDate":"2022/02/03"
+          "publishedDate":"2022/02/15"
         },
         "article4": {
           "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb9d",

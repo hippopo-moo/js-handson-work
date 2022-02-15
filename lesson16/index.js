@@ -1,5 +1,4 @@
-// const url = "https://myjson.dit.upm.es/api/bins/hyv9";
-const url = "https://myjson.dit.upm.es/api/bins/d9vx";
+const url = "https://myjson.dit.upm.es/api/bins/53ad";
 const newsBlock = document.getElementById("news");
 const newsTabs = document.getElementById("news_Tabs");
 
@@ -20,7 +19,7 @@ const createNewsContent = (allData) => {
   primaryElement.classList.add("news_Wrapper");
   const lists = document.createElement("ul");
   lists.classList.add("news_Lists");
-  lists.id = 'news_Lists';
+  lists.id = "news_Lists";
   const primaryImageWrapper = document.createElement("div");
   primaryElement.appendChild(lists);
   primaryElement.appendChild(primaryImageWrapper);
@@ -28,7 +27,7 @@ const createNewsContent = (allData) => {
 
   const selectedData = allData.find((data) => data.isActive);
   primaryImageWrapper.classList.add("news_Img");
-  primaryImageWrapper.id = 'news_Img';
+  primaryImageWrapper.id = "news_Img";
   const img = document.createElement("img");
   img.src = selectedData.image.img;
   primaryImageWrapper.appendChild(img);
@@ -52,8 +51,7 @@ const setTabClickEvent = (allData) => {
     setCategoryImage(targetData);
     renderNewsList(targetData);
   });
-}
-
+};
 
 const setCategoryImage = (targetData) => {
   const imgWrapper = document.getElementById("news_Img");
@@ -62,15 +60,14 @@ const setCategoryImage = (targetData) => {
   img.src = targetData.image.img;
   img.alt = targetData.image.alt;
   imgWrapper.appendChild(img);
-}
+};
 
-const renderNewsList = ({article}) => {
+const renderNewsList = ({ article }) => {
   const newsList = document.getElementById("news_Lists");
   newsList.innerHTML = "";
   Object.keys(article).forEach((key) => {
     const li = document.createElement("li");
     const a = document.createElement("a");
-    // const comment = document.createElement("span");
     a.href = article[key].url;
     a.textContent = article[key].title;
     const dateDiff = getDateDiff(article[key].publishedDate);
