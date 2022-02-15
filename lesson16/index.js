@@ -71,7 +71,7 @@ const renderNewsList = ({ article }) => {
     a.href = article[key].url;
     a.textContent = article[key].title;
     const dateDiff = getDateDiff(article[key].publishedDate);
-    if (dateDiff < 14) {
+    if (dateDiff < 4) {
       const newMark = document.createElement("span");
       newMark.classList.add("newMark");
       newMark.innerText = "new!";
