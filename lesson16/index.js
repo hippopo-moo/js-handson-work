@@ -120,9 +120,9 @@ const getData = () => {
 
 const init = async () => {
   const response = await getData();
-  const allData = await response.json();
-  createNewsTabs(allData.data);
-  createNewsContent(allData.data);
-  setTabClickEvent(allData.data);
+  const {data} = await response.json();
+  createNewsTabs(data);
+  createNewsContent(data);
+  setTabClickEvent(data);
 };
 init();
