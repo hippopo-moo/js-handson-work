@@ -75,15 +75,21 @@ const renderNewsList = ({ article }) => {
     li.appendChild(a);
     const commentCount = article[key].comment.length;
     if (commentCount > 0) {
-      const comment = document.createElement("span");
-      const commentIcon = document.createElement("img");
-      commentIcon.src = "/lesson16/img/icon_comment.png";
-      a.appendChild(commentIcon);
-      comment.textContent = commentCount;
-      li.appendChild(comment);
+      a.appendChild(renderComments(commentCount));
     }
     newsList.appendChild(li);
   });
+};
+
+const renderComments = (commentCount) => {
+  const frag = document.createDocumentFragment();
+  const comment = document.createElement("span");
+  const commentIcon = document.createElement("img");
+  commentIcon.src = "/lesson16/img/icon_comment.png";
+  frag.appendChild(commentIcon);
+  comment.textContent = commentCount;
+  frag.appendChild(comment);
+  return frag;
 };
 
 const renderNewMark = () => {
