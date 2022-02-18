@@ -1,4 +1,4 @@
-const url = "https://myjson.dit.upm.es/api/bins/53ad";
+const url = "https://myjson.dit.upm.es/api/bins/2uf9";
 const newsBlock = document.getElementById("news");
 const newsTabs = document.getElementById("news_Tabs");
 
