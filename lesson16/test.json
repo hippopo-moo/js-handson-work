@@ -1,0 +1,351 @@
+{
+  "data": [
+    {
+      "category": "news",
+      "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6a",
+      "isActive": false,
+      "image": {
+        "img": "/lesson16/img/news.png",
+        "alt": "newsの画像"
+      },
+      "article": {
+        "article1": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb7a",
+          "title": "ニュース1タイトルニュース1タイトル",
+          "url": "news/article1.html",
+          "comment": [
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb1",
+              "name": "Taro",
+              "icon": "aaa.jpg",
+              "detail": "Taroのコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Jiro",
+              "icon": "aaa.jpg",
+              "detail": "次郎のコメント"
+            }
+          ],
+          "is_new": true,
+          "publishedDate":"2022/02/18"
+        },
+        "article2": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb7b",
+          "title": "ニュース2タイトルニュース2タイトル",
+          "url": "news/article1.html",
+          "comment": [
+          ],
+          "is_new": true,
+          "publishedDate":"2022/02/18"
+        },
+        "article3": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb7c",
+          "title": "ニュース3タイトルニュース3タイトル",
+          "url": "news/article1.html",
+          "comment": [
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb1",
+              "name": "Taro",
+              "icon": "aaa.jpg",
+              "detail": "Taroのコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Jiro",
+              "icon": "aaa.jpg",
+              "detail": "次郎のコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Sabro",
+              "icon": "aaa.jpg",
+              "detail": "三郎のコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Shiro",
+              "icon": "aaa.jpg",
+              "detail": "四郎のコメント"
+            }
+          ],
+          "is_new": false,
+          "publishedDate":"2022/02/18"
+        },
+        "article4": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb7d",
+          "title": "ニュース4タイトルニュース4タイトル",
+          "url": "news/article1.html",
+          "comment": [
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb1",
+              "name": "Taro",
+              "icon": "aaa.jpg",
+              "detail": "Taroのコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Jiro",
+              "icon": "aaa.jpg",
+              "detail": "次郎のコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Sabro",
+              "icon": "aaa.jpg",
+              "detail": "三郎のコメント"
+            }
+          ],
+          "is_new": false,
+          "publishedDate":"2022/01/24"
+        }
+      }
+    },
+    {
+      "category": "economy",
+      "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6b",
+      "isActive": true,
+      "image": {
+        "img": "/lesson16/img/economy.png",
+        "alt": "economyの画像"
+      },
+      "article": {
+        "article1": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb8a",
+          "title": "ニュース1タイトルニュース1タイトル",
+          "url": "news/article1.html",
+          "comment": [
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb1",
+              "name": "Taro",
+              "icon": "aaa.jpg",
+              "detail": "Taroのコメント"
+            }
+          ],
+          "is_new": true,
+          "publishedDate":"2022/02/18"
+        },
+        "article2": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb8b",
+          "title": "ニュース2タイトルニュース2タイトル",
+          "url": "news/article1.html",
+          "comment": [
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb1",
+              "name": "Taro",
+              "icon": "aaa.jpg",
+              "detail": "Taroのコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Jiro",
+              "icon": "aaa.jpg",
+              "detail": "次郎のコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Sabro",
+              "icon": "aaa.jpg",
+              "detail": "三郎のコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Shiro",
+              "icon": "aaa.jpg",
+              "detail": "四郎のコメント"
+            }
+          ],
+          "is_new": true,
+          "publishedDate":"2022/01/24"
+        },
+        "article3": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb8c",
+          "title": "ニュース3タイトルニュース3タイトル",
+          "url": "news/article1.html",
+          "comment": [
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb1",
+              "name": "Taro",
+              "icon": "aaa.jpg",
+              "detail": "Taroのコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Jiro",
+              "icon": "aaa.jpg",
+              "detail": "次郎のコメント"
+            }
+          ],
+          "is_new": false,
+          "publishedDate":"2022/01/22"
+        },
+        "article4": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb8d",
+          "title": "ニュース4タイトルニュース4タイトル",
+          "url": "news/article1.html",
+          "comment": [
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb1",
+              "name": "Taro",
+              "icon": "aaa.jpg",
+              "detail": "Taroのコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Jiro",
+              "icon": "aaa.jpg",
+              "detail": "次郎のコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Sabro",
+              "icon": "aaa.jpg",
+              "detail": "三郎のコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Shiro",
+              "icon": "aaa.jpg",
+              "detail": "四郎のコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Goro",
+              "icon": "aaa.jpg",
+              "detail": "五郎のコメント"
+            }
+          ],
+          "is_new": false,
+          "publishedDate":"2021/01/16"
+        }
+      }
+    },
+    {
+      "category": "sports",
+      "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6c",
+      "isActive": false,
+      "image": {
+        "img": "/lesson16/img/sports.png",
+        "alt": "sportsの画像"
+      },
+      "article": {
+        "article1": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb9a",
+          "title": "ニュース1タイトルニュース1タイトル",
+          "url": "news/article1.html",
+          "comment": [
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb1",
+              "name": "Taro",
+              "icon": "aaa.jpg",
+              "detail": "Taroのコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Jiro",
+              "icon": "aaa.jpg",
+              "detail": "次郎のコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Sabro",
+              "icon": "aaa.jpg",
+              "detail": "三郎のコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Shiro",
+              "icon": "aaa.jpg",
+              "detail": "四郎のコメント"
+            }
+          ],          "is_new": true,
+          "publishedDate":"2022/01/25"
+        },
+        "article2": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb9b",
+          "title": "ニュース2タイトルニュース2タイトル",
+          "url": "news/article1.html",
+          "comment": [
+          ],
+          "is_new": true,
+          "publishedDate":"2022/01/23"
+        },
+        "article3": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb9c",
+          "title": "ニュース3タイトルニュース3タイトル",
+          "url": "news/article1.html",
+          "comment": [
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb1",
+              "name": "Taro",
+              "icon": "aaa.jpg",
+              "detail": "Taroのコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Jiro",
+              "icon": "aaa.jpg",
+              "detail": "次郎のコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Sabro",
+              "icon": "aaa.jpg",
+              "detail": "三郎のコメント"
+            }
+          ],
+          "is_new": true,
+          "publishedDate":"2022/02/18"
+        },
+        "article4": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb9d",
+          "title": "ニュース4タイトルニュース4タイトル",
+          "url": "news/article1.html",
+          "comment": [
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb1",
+              "name": "Taro",
+              "icon": "aaa.jpg",
+              "detail": "Taroのコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Jiro",
+              "icon": "aaa.jpg",
+              "detail": "次郎のコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Sabro",
+              "icon": "aaa.jpg",
+              "detail": "三郎のコメント"
+            },
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb3",
+              "name": "Shiro",
+              "icon": "aaa.jpg",
+              "detail": "四郎のコメント"
+            }
+          ],
+          "is_new": false,
+          "publishedDate":"2022/01/25"
+        },
+        "article5": {
+          "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb9e",
+          "title": "ニュース5タイトルニュース5タイトル",
+          "url": "news/article1.html",
+          "comment": [
+            {
+              "id": "d70d67e9-fe9d-404e-907c-2dfc22582eb1",
+              "name": "Taro",
+              "icon": "aaa.jpg",
+              "detail": "Taroのコメント"
+            }
+          ],
+          "is_new": true,
+          "publishedDate":"2022/01/25"
+        }
+      }
+    }
+  ]
+}
