@@ -8,14 +8,15 @@ const controlSlide = (btnType) => {
     const prevSlide = currentSlide.previousElementSibling;
     currentSlide.setAttribute("data-hidden","true");
     prevSlide.setAttribute("data-hidden","false");
-    console.log(prevSlide);
+    controlSliderBtn();
   } else {
     // 今のcurrentのスライドの一つ次の要素をcurrentにする
     const nextSlide = currentSlide.nextElementSibling;
     currentSlide.setAttribute("data-hidden","true");
     nextSlide.setAttribute("data-hidden","false");
-    console.log(nextSlide);
+    controlSliderBtn();
   }
+  updateFractionNum();
 
 }
 
@@ -64,7 +65,7 @@ const setBtnEvent = () => {
 
 const createSliderBtns = () => {
   const prevBtn = document.createElement("div");
-  prevBtn.classList.add("sliderBtn","prev");
+  prevBtn.classList.add("sliderBtn","prev", "is-disabled");
   prevBtn.id = "js-slider-prevBtn";
   const nextBtn = document.createElement("div");
   nextBtn.classList.add("sliderBtn","next");
@@ -74,6 +75,27 @@ const createSliderBtns = () => {
   setBtnEvent();
 }
 
+const controlSliderBtn = () => {
+  const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
+  const currentSlide = document.querySelector('[data-hidden="false"]');
+  const prevBtn = document.getElementById("js-slider-prevBtn");
+  const nextBtn = document.getElementById("js-slider-nextBtn");
+  const currentSlideIndex = allSlides.findIndex((slide)=>{
+    return slide === currentSlide;
+  });
+
+  if (currentSlideIndex === 0) {
+    prevBtn.classList.add("is-disabled");
+    nextBtn.classList.remove("is-disabled");
+  } else if(currentSlideIndex === 4) {
+    prevBtn.classList.remove("is-disabled");
+    nextBtn.classList.add("is-disabled");
+  } else {
+    prevBtn.classList.remove("is-disabled");
+    nextBtn.classList.remove("is-disabled");
+  }
+}
+
 const setFraction = (slides) => {
   const slider = document.getElementById("js-slider");
   const fraction = document.createElement("div");
@@ -81,6 +103,7 @@ const setFraction = (slides) => {
   const fractionWrapper = document.createElement("div");
 
   const numerator = document.createElement("span");
+  numerator.id = "js-numerator";
   numerator.textContent = "1";
   const separator = document.createElement("span");
   separator.textContent = "/";
@@ -93,7 +116,17 @@ const setFraction = (slides) => {
 
   fraction.appendChild(fractionWrapper);
   slider.appendChild(fraction);
+}
 
+const updateFractionNum = ()=> {
+  const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
+  const currentSlide = document.querySelector('[data-hidden="false"]');
+  const currentSlideIndex = allSlides.findIndex((slide)=>{
+    return slide === currentSlide;
+  })
+  const numerator = document.getElementById("js-numerator");
+  const currentSlideNum = currentSlideIndex + 1;
+  numerator.textContent = currentSlideNum;
 }
 
 const setLoadingImage = () => {
