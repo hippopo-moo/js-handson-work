@@ -1,3 +1,9 @@
+#js-loading {
+  height: 480px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .slider {
   display: flex;
   align-items: center;
@@ -5,6 +11,7 @@
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
+  position: relative;
 }
 .sliderWrapper {
   width: 100%;
@@ -77,4 +84,12 @@
 .sliderBtn.next::after {
   content: ">";
   left: 1px;
+}
+.fraction {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
 }
