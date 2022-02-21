@@ -1,4 +1,4 @@
-const url = "https://myjson.dit.upm.es/api/bins/a1ol";
+const url = "https://myjson.dit.upm.es/api/bins/8b9d";
 const main = document.querySelector("main");
 
 const controlSlide = (btnType) => {
@@ -8,17 +8,31 @@ const controlSlide = (btnType) => {
     const prevSlide = currentSlide.previousElementSibling;
     currentSlide.setAttribute("data-hidden","true");
     prevSlide.setAttribute("data-hidden","false");
-    controlSliderBtn();
+    controlBtnBehavior();
   } else {
     // 今のcurrentのスライドの一つ次の要素をcurrentにする
     const nextSlide = currentSlide.nextElementSibling;
     currentSlide.setAttribute("data-hidden","true");
     nextSlide.setAttribute("data-hidden","false");
-    controlSliderBtn();
+    controlBtnBehavior();
   }
   updateFractionNum();
-
 }
+
+const slideImgTemplate = (index, slide) => {
+  const div = document.createElement("div");
+  div.classList.add("sliderImg");
+  div.id = `slide-${index}`;
+  if(index === 0){
+    div.setAttribute("data-hidden", "false");
+  } else {
+    div.setAttribute("data-hidden", "true");
+  }
+  const img = document.createElement("img");
+  img.src = slide.img;
+  div.appendChild(img);
+  return div;
+};
 
 const initSlides = (slides)=> {
   const slider = document.createElement("div");
@@ -29,22 +43,8 @@ const initSlides = (slides)=> {
   sliderWrapper.id = "js-sliderWrapper"
   slider.appendChild(sliderWrapper);
   main.appendChild(slider);
+
   const fragment = document.createDocumentFragment();
-  const slideImgTemplate = (index, slide) => {
-    const div = document.createElement("div");
-    div.classList.add("sliderImg");
-    div.id = `slide-${index}`;
-    if(index === 0){
-      div.setAttribute("data-hidden", "false");
-    } else {
-      div.setAttribute("data-hidden", "true");
-    }
-    console.log(div);
-    const img = document.createElement("img");
-    img.src = slide.img;
-    div.appendChild(img);
-    return div;
-  };
   for (const [index, slide] of slides.entries()) {
     fragment.appendChild(slideImgTemplate(index, slide));
     sliderWrapper.appendChild(fragment);
@@ -75,7 +75,7 @@ const createSliderBtns = () => {
   setBtnEvent();
 }
 
-const controlSliderBtn = () => {
+const controlBtnBehavior = () => {
   const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
   const currentSlide = document.querySelector('[data-hidden="false"]');
   const prevBtn = document.getElementById("js-slider-prevBtn");
