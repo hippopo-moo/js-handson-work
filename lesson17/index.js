@@ -64,14 +64,15 @@ const setBtnEvent = () => {
 }
 
 const createSliderBtns = () => {
-  const prevBtn = document.createElement("div");
-  prevBtn.classList.add("sliderBtn","prev", "is-disabled");
-  prevBtn.id = "js-slider-prevBtn";
-  const nextBtn = document.createElement("div");
-  nextBtn.classList.add("sliderBtn","next");
-  nextBtn.id = "js-slider-nextBtn";
-  main.querySelector(".slider").appendChild(prevBtn);
-  main.querySelector(".slider").appendChild(nextBtn);
+  const sliderDirections = ["prev", "next"];
+  sliderDirections.forEach((sliderDirection) => {
+    const button = document.createElement("div");
+    button.classList.add("sliderBtn", `${sliderDirection}`);
+    button.id = `js-slider-${sliderDirection}Btn`;
+    button.setAttribute("data-btntype", `${sliderDirection}`)
+    sliderDirection === "prev" && button.classList.add("is-disabled");
+    main.querySelector(".slider").appendChild(button);
+  });
   setBtnEvent();
 }
 
