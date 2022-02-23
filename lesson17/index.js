@@ -53,14 +53,13 @@ const initSlides = (slides)=> {
 }
 
 const setBtnEvent = () => {
-  const prevBtn = document.getElementById("js-slider-prevBtn");
-  const nextBtn = document.getElementById("js-slider-nextBtn");
-  prevBtn.addEventListener("click", ()=> {
-    controlSlide('prev');
-  })
-  nextBtn.addEventListener("click", ()=> {
-    controlSlide('next');
-  })
+  const buttons = document.querySelectorAll(".sliderBtn");
+  buttons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const eventTarget = e.target;
+      controlSlide(eventTarget.getAttribute("data-btntype"));
+    });
+  });
 }
 
 const createSliderBtns = () => {
