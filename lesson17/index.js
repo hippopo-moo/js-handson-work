@@ -148,7 +148,14 @@ const getSlideData = () => {
   return new Promise((resolve) => {
     try {
       setTimeout(()=>{
-        resolve(fetch(url));
+        resolve(fetch(url).then(response => {
+          if(response.ok){
+            return response;
+          } else {
+            throw new Error('Network response was not OK');
+          }
+        }
+        ));
       },3000
       );
     } catch (error) {
