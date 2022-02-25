@@ -77,6 +77,7 @@ const createSliderBtns = () => {
 
 const controlBtnBehavior = () => {
   const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
+  const allSlidesLength = Array.from(document.querySelectorAll(".sliderImg")).length;
   const currentSlide = document.querySelector('[data-hidden="false"]');
   const prevBtn = document.getElementById("js-slider-prevBtn");
   const nextBtn = document.getElementById("js-slider-nextBtn");
@@ -87,7 +88,7 @@ const controlBtnBehavior = () => {
   if (currentSlideIndex === 0) {
     prevBtn.classList.add("is-disabled");
     nextBtn.classList.remove("is-disabled");
-  } else if(currentSlideIndex === 4) {
+  } else if(currentSlideIndex === (allSlidesLength - 1)) {
     prevBtn.classList.remove("is-disabled");
     nextBtn.classList.add("is-disabled");
   } else {
