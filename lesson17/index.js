@@ -1,21 +1,22 @@
 const url = "https://myjson.dit.upm.es/api/bins/8b9d";
 const main = document.querySelector("main");
+const sliderDirections = ["prev", "next"];
 
 const controlSlide = (btnType) => {
   const currentSlide = document.querySelector('[data-hidden="false"]');
+
   if(btnType === "prev") {
     // 今のcurrentのスライドの一つ前の要素をcurrentにする
     const prevSlide = currentSlide.previousElementSibling;
     currentSlide.setAttribute("data-hidden","true");
     prevSlide.setAttribute("data-hidden","false");
-    controlBtnBehavior();
   } else {
     // 今のcurrentのスライドの一つ次の要素をcurrentにする
     const nextSlide = currentSlide.nextElementSibling;
     currentSlide.setAttribute("data-hidden","true");
     nextSlide.setAttribute("data-hidden","false");
-    controlBtnBehavior();
   }
+  controlBtnBehavior();
   updateFractionNum();
 }
 
@@ -63,7 +64,6 @@ const setBtnEvent = () => {
 }
 
 const createSliderBtns = () => {
-  const sliderDirections = ["prev", "next"];
   sliderDirections.forEach((sliderDirection) => {
     const button = document.createElement("div");
     button.classList.add("sliderBtn", `${sliderDirection}`);
