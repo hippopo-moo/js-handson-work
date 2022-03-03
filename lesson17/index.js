@@ -1,21 +1,12 @@
 const url = "https://myjson.dit.upm.es/api/bins/8b9d";
 const main = document.querySelector("main");
-const sliderDirections = ["prev", "next"];
+const sliderDirections = ["previous", "next"];
 
-const controlSlide = (btnType) => {
+const controlSlide = (direction) => {
   const currentSlide = document.querySelector('[data-hidden="false"]');
-
-  if(btnType === "prev") {
-    // 今のcurrentのスライドの一つ前の要素をcurrentにする
-    const prevSlide = currentSlide.previousElementSibling;
-    currentSlide.setAttribute("data-hidden","true");
-    prevSlide.setAttribute("data-hidden","false");
-  } else {
-    // 今のcurrentのスライドの一つ次の要素をcurrentにする
-    const nextSlide = currentSlide.nextElementSibling;
-    currentSlide.setAttribute("data-hidden","true");
-    nextSlide.setAttribute("data-hidden","false");
-  }
+  const showSlide = currentSlide[direction];
+  currentSlide.setAttribute("data-hidden","true");
+  showSlide.setAttribute("data-hidden","false");
   controlBtnBehavior();
   updateFractionNum();
 }
@@ -57,8 +48,8 @@ const setBtnEvent = () => {
   const buttons = document.querySelectorAll(".sliderBtn");
   buttons.forEach((button) => {
     button.addEventListener("click", (e) => {
-      const eventTarget = e.target;
-      controlSlide(eventTarget.getAttribute("data-btntype"));
+      const eventTargetBtnType = e.target.getAttribute("data-btntype");
+      controlSlide(`${eventTargetBtnType}ElementSibling`);
     });
   });
 }
@@ -69,7 +60,7 @@ const createSliderBtns = () => {
     button.classList.add("sliderBtn", `${sliderDirection}`);
     button.id = `js-slider-${sliderDirection}Btn`;
     button.setAttribute("data-btntype", `${sliderDirection}`)
-    sliderDirection === "prev" && button.classList.add("is-disabled");
+    sliderDirection === "previous" && button.classList.add("is-disabled");
     main.querySelector(".slider").appendChild(button);
   });
   setBtnEvent();
@@ -79,7 +70,7 @@ const controlBtnBehavior = () => {
   const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
   const allSlidesLength = Array.from(document.querySelectorAll(".sliderImg")).length;
   const currentSlide = document.querySelector('[data-hidden="false"]');
-  const prevBtn = document.getElementById("js-slider-prevBtn");
+  const prevBtn = document.getElementById("js-slider-previousBtn");
   const nextBtn = document.getElementById("js-slider-nextBtn");
   const currentSlideIndex = allSlides.findIndex((slide)=>{
     return slide === currentSlide;

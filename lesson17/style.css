@@ -72,13 +72,13 @@
   font-weight: bold;
   font-size: 24px;
 }
-.sliderBtn.prev {
+.sliderBtn.previous {
   order: 1;
 }
 .sliderBtn.next {
   order: 3;
 }
-.sliderBtn.prev::after {
+.sliderBtn.previous::after {
   content: "<";
   left: -1px;
 }
