@@ -140,14 +140,7 @@ const getSlideData = () => {
   return new Promise((resolve) => {
     try {
       setTimeout(()=>{
-        resolve(fetch(url).then(response => {
-          if(response.ok){
-            return response;
-          } else {
-            throw new Error('Network response was not OK');
-          }
-        }
-        ));
+        resolve(fetchJson(url));
       },3000
       );
     } catch (error) {
@@ -157,6 +150,14 @@ const getSlideData = () => {
     }
   });
 };
+
+const fetchJson = async (jsonUrl) => {
+  const response = await fetch(jsonUrl);
+  if(!response.ok) {
+    throw new Error(`Network response was not OK: ${response.status}`);
+  }
+  return response;
+}
 
 const init = async () => {
   setLoadingImage();
