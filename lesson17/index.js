@@ -15,11 +15,11 @@ const slideImgTemplate = (index, slide) => {
   const div = document.createElement("div");
   div.classList.add("sliderImg");
   div.id = `slide-${index}`;
-  if(index === 0){
-    div.setAttribute("data-hidden", "false");
-  } else {
-    div.setAttribute("data-hidden", "true");
-  }
+
+  index === 0
+    ? div.setAttribute("data-hidden", "false")
+    : div.setAttribute("data-hidden", "true");
+
   const img = document.createElement("img");
   img.src = slide.img;
   div.appendChild(img);
