@@ -79,13 +79,13 @@ const controlBtnBehavior = () => {
   if (currentSlideIndex === 0) {
     prevBtn.classList.add("is-disabled");
     return;
-  } else if(currentSlideIndex === (allSlidesLength - 1)) {
+  }
+  if (currentSlideIndex === allSlidesLength - 1) {
     nextBtn.classList.add("is-disabled");
     return;
-  } else {
-    prevBtn.classList.remove("is-disabled");
-    nextBtn.classList.remove("is-disabled");
   }
+  prevBtn.classList.remove("is-disabled");
+  nextBtn.classList.remove("is-disabled");
 }
 
 const setFraction = (slides) => {
