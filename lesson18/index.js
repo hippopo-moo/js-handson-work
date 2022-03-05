@@ -88,6 +88,63 @@ const controlBtnBehavior = () => {
   nextBtn.classList.remove("is-disabled");
 }
 
+const setPagenation = (slides) => {
+  const slider = document.getElementById("js-slider");
+  const pagenation = document.createElement("div");
+  pagenation.classList.add("pagenation");
+  const pagenationWrapper = document.createElement("div");
+  pagenationWrapper.classList.add("pagenationWrapper");
+
+  const slideCount = slides.length;
+  slides.map((slide,index) => {
+    const span = document.createElement("span");
+    span.classList.add("pagenationBullet");
+    index === 0 ? span.classList.add("is-active") : span.classList.remove("is-active");
+    span.setAttribute("data-slideNo",`slideNo${index}`);
+    pagenationWrapper.appendChild(span);
+    span.addEventListener("click",(event)=>{
+      const bullets = document.querySelectorAll(".pagenationBullet");
+      const currentBullet = document.querySelector(".pagenationBullet.is-active");
+      const activateBulletIndex = Array.from(bullets).findIndex((bullet)=>{
+        return bullet === event.target;
+      })
+      console.log(activateBulletIndex);
+      currentBullet.classList.remove("is-active");
+      bullets[activateBulletIndex].classList.add("is-active");
+    });
+  });
+  pagenation.appendChild(pagenationWrapper);
+  slider.appendChild(pagenation);
+}
+
+const updatePagenation = (slides) => {
+  const slider = document.getElementById("js-slider");
+  const pagenation = document.createElement("div");
+  pagenation.classList.add("pagenation");
+  const pagenationWrapper = document.createElement("div");
+  pagenationWrapper.classList.add("pagenationWrapper");
+
+  const slideCount = slides.length;
+  slides.map((slide,index) => {
+    console.log(slide);
+    const span = document.createElement("span");
+    span.classList.add("pagenationBullet");
+    span.setAttribute("data-slideNo",`slideNo${index}`);
+    pagenationWrapper.appendChild(span);
+    span.addEventListener("click",(event)=>{
+      const bullets = document.querySelectorAll(".pagenationBullet");
+      const currentBullet = document.querySelector(".pagenationBullet.is-active");
+      currentBullet.classList.remove("is-active");
+      const activateBullet = Array.from(bullets).findIndex((bullet)=>{
+        return bullet === event.target;
+      })
+      activateBullet.classList.add("is-active");
+    });
+  });
+  pagenation.appendChild(pagenationWrapper);
+  slider.appendChild(pagenation);
+}
+
 const setFraction = (slides) => {
   const slider = document.getElementById("js-slider");
   const fraction = document.createElement("div");
@@ -165,6 +222,7 @@ const init = async () => {
   const {slides} = await response.json();
   removeLoadingImage();
   initSlides(slides);
+  setPagenation(slides);
   setFraction(slides);
 };
 
