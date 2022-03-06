@@ -11,6 +11,16 @@ const controlSlide = (direction) => {
   updateFractionNum();
 }
 
+const controlSlideByIndex = (index) => {
+  const allSlides = document.querySelectorAll(".sliderImg");
+  const currentSlide = document.querySelector('[data-hidden="false"]');
+  const showSlide = allSlides[index];
+  currentSlide.setAttribute("data-hidden","true");
+  showSlide.setAttribute("data-hidden","false");
+  controlBtnBehavior();
+  updateFractionNum();
+}
+
 const slideImgTemplate = (index, slide) => {
   const div = document.createElement("div");
   div.classList.add("sliderImg");
@@ -50,6 +60,12 @@ const setBtnEvent = () => {
     button.addEventListener("click", (e) => {
       const eventTargetBtnType = e.target.getAttribute("data-btntype");
       controlSlide(`${eventTargetBtnType}ElementSibling`);
+      const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
+      const currentSlide = document.querySelector('[data-hidden="false"]');
+      const currentSlideIndex = allSlides.findIndex((slide)=>{
+        return slide === currentSlide;
+      });
+      updatePagenation(eventTargetBtnType, currentSlideIndex);
     });
   });
 }
@@ -95,7 +111,6 @@ const setPagenation = (slides) => {
   const pagenationWrapper = document.createElement("div");
   pagenationWrapper.classList.add("pagenationWrapper");
 
-  const slideCount = slides.length;
   slides.map((slide,index) => {
     const span = document.createElement("span");
     span.classList.add("pagenationBullet");
@@ -111,38 +126,29 @@ const setPagenation = (slides) => {
       console.log(activateBulletIndex);
       currentBullet.classList.remove("is-active");
       bullets[activateBulletIndex].classList.add("is-active");
+      controlSlideByIndex(index);
     });
   });
   pagenation.appendChild(pagenationWrapper);
   slider.appendChild(pagenation);
 }
 
-const updatePagenation = (slides) => {
-  const slider = document.getElementById("js-slider");
-  const pagenation = document.createElement("div");
-  pagenation.classList.add("pagenation");
-  const pagenationWrapper = document.createElement("div");
-  pagenationWrapper.classList.add("pagenationWrapper");
+const updatePagenation = (eventTargetBtnType, currentSlideIndex) => {
+  // TODO previousBtnなら-1,nextBtnなら+1する
+  let activateSlideIndex = 0;
+  console.log(eventTargetBtnType);
+  console.log(currentSlideIndex);
+  if(eventTargetBtnType === "previous") {
+    activateSlideIndex = currentSlideIndex - 1;
+  }else {
+    activateSlideIndex = currentSlideIndex + 1;
+  }
 
-  const slideCount = slides.length;
-  slides.map((slide,index) => {
-    console.log(slide);
-    const span = document.createElement("span");
-    span.classList.add("pagenationBullet");
-    span.setAttribute("data-slideNo",`slideNo${index}`);
-    pagenationWrapper.appendChild(span);
-    span.addEventListener("click",(event)=>{
-      const bullets = document.querySelectorAll(".pagenationBullet");
-      const currentBullet = document.querySelector(".pagenationBullet.is-active");
-      currentBullet.classList.remove("is-active");
-      const activateBullet = Array.from(bullets).findIndex((bullet)=>{
-        return bullet === event.target;
-      })
-      activateBullet.classList.add("is-active");
-    });
-  });
-  pagenation.appendChild(pagenationWrapper);
-  slider.appendChild(pagenation);
+  const bullets = document.querySelectorAll(".pagenationBullet");
+  const currentBullet = document.querySelector(".pagenationBullet.is-active");
+  currentBullet.classList.remove("is-active");
+  const activateBullet = bullets[activateSlideIndex];
+  activateBullet.classList.add("is-active");
 }
 
 const setFraction = (slides) => {
