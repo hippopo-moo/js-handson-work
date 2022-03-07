@@ -60,12 +60,13 @@ const setBtnEvent = () => {
     button.addEventListener("click", (e) => {
       const eventTargetBtnType = e.target.getAttribute("data-btntype");
       controlSlide(`${eventTargetBtnType}ElementSibling`);
+
       const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
-      const currentSlide = document.querySelector('[data-hidden="false"]');
-      const currentSlideIndex = allSlides.findIndex((slide)=>{
-        return slide === currentSlide;
+      const nextSlide = document.querySelector('[data-hidden="false"]');
+      const nextSlideIndex = allSlides.findIndex((slide)=>{
+        return slide === nextSlide;
       });
-      updatePagenation(eventTargetBtnType, currentSlideIndex);
+      updatePagenation(eventTargetBtnType, nextSlideIndex);
     });
   });
 }
@@ -123,7 +124,6 @@ const setPagenation = (slides) => {
       const activateBulletIndex = Array.from(bullets).findIndex((bullet)=>{
         return bullet === event.target;
       })
-      console.log(activateBulletIndex);
       currentBullet.classList.remove("is-active");
       bullets[activateBulletIndex].classList.add("is-active");
       controlSlideByIndex(index);
@@ -134,15 +134,7 @@ const setPagenation = (slides) => {
 }
 
 const updatePagenation = (eventTargetBtnType, currentSlideIndex) => {
-  // TODO previousBtnなら-1,nextBtnなら+1する
-  let activateSlideIndex = 0;
-  console.log(eventTargetBtnType);
-  console.log(currentSlideIndex);
-  if(eventTargetBtnType === "previous") {
-    activateSlideIndex = currentSlideIndex - 1;
-  }else {
-    activateSlideIndex = currentSlideIndex + 1;
-  }
+  const activateSlideIndex = currentSlideIndex;
 
   const bullets = document.querySelectorAll(".pagenationBullet");
   const currentBullet = document.querySelector(".pagenationBullet.is-active");
