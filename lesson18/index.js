@@ -1,6 +1,8 @@
-const url = "https://myjson.dit.upm.es/api/bins/8b9d";
+// const url = "https://myjson.dit.upm.es/api/bins/8b9d";
+const url = "test.json";
 const main = document.querySelector("main");
 const sliderDirections = ["previous", "next"];
+const slideSpeed = 3000;
 
 const controlSlide = (direction) => {
   const currentSlide = document.querySelector('[data-hidden="false"]');
@@ -66,7 +68,7 @@ const setBtnEvent = () => {
       const nextSlideIndex = allSlides.findIndex((slide)=>{
         return slide === nextSlide;
       });
-      updatePagenation(eventTargetBtnType, nextSlideIndex);
+      updatePagenation(nextSlideIndex);
     });
   });
 }
@@ -93,6 +95,8 @@ const controlBtnBehavior = () => {
     return slide === currentSlide;
   });
 
+  console.log(currentSlideIndex);
+
   if (currentSlideIndex === 0) {
     prevBtn.classList.add("is-disabled");
     return;
@@ -118,14 +122,30 @@ const setPagenation = (slides) => {
     index === 0 ? span.classList.add("is-active") : span.classList.remove("is-active");
     span.setAttribute("data-slideNo",`slideNo${index}`);
     pagenationWrapper.appendChild(span);
+
     span.addEventListener("click",(event)=>{
       const bullets = document.querySelectorAll(".pagenationBullet");
       const currentBullet = document.querySelector(".pagenationBullet.is-active");
+      const prevBtn = document.getElementById("js-slider-previousBtn");
+      const nextBtn = document.getElementById("js-slider-nextBtn");
       const activateBulletIndex = Array.from(bullets).findIndex((bullet)=>{
         return bullet === event.target;
       })
+      console.log(activateBulletIndex);
       currentBullet.classList.remove("is-active");
       bullets[activateBulletIndex].classList.add("is-active");
+
+      if(activateBulletIndex === 0){
+        prevBtn.classList.add("is-disabled");
+        nextBtn.classList.remove("is-disabled");
+        return;
+      }
+      if(activateBulletIndex === 4){
+        nextBtn.classList.add("is-disabled");
+        prevBtn.classList.remove("is-disabled");
+        return;
+      }
+
       controlSlideByIndex(index);
     });
   });
@@ -133,7 +153,7 @@ const setPagenation = (slides) => {
   slider.appendChild(pagenation);
 }
 
-const updatePagenation = (eventTargetBtnType, currentSlideIndex) => {
+const updatePagenation = (currentSlideIndex) => {
   const activateSlideIndex = currentSlideIndex;
 
   const bullets = document.querySelectorAll(".pagenationBullet");
