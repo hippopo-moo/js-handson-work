@@ -115,6 +115,7 @@ const setPagenation = (slides) => {
   pagenation.classList.add("pagenation");
   const pagenationWrapper = document.createElement("div");
   pagenationWrapper.classList.add("pagenationWrapper");
+  const slideLength = slides.length;
 
   slides.map((slide,index) => {
     const span = document.createElement("span");
@@ -140,7 +141,7 @@ const setPagenation = (slides) => {
         nextBtn.classList.remove("is-disabled");
         return;
       }
-      if(activateBulletIndex === 4){
+      if(activateBulletIndex === slideLength){
         nextBtn.classList.add("is-disabled");
         prevBtn.classList.remove("is-disabled");
         return;
