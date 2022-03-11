@@ -3,6 +3,7 @@ const url = "test.json";
 const main = document.querySelector("main");
 const sliderDirections = ["previous", "next"];
 const slideSpeed = 3000;
+const autoSlideFlag = true;
 
 const controlSlide = (direction) => {
   const currentSlide = document.querySelector('[data-hidden="false"]');
@@ -95,8 +96,6 @@ const controlBtnBehavior = () => {
     return slide === currentSlide;
   });
 
-  console.log(currentSlideIndex);
-
   if (currentSlideIndex === 0) {
     prevBtn.classList.add("is-disabled");
     return;
@@ -156,7 +155,6 @@ const setPagenation = (slides) => {
 
 const updatePagenation = (currentSlideIndex) => {
   const activateSlideIndex = currentSlideIndex;
-
   const bullets = document.querySelectorAll(".pagenationBullet");
   const currentBullet = document.querySelector(".pagenationBullet.is-active");
   currentBullet.classList.remove("is-active");
@@ -243,6 +241,17 @@ const init = async () => {
   initSlides(slides);
   setPagenation(slides);
   setFraction(slides);
+  if (autoSlideFlag){
+    let index = 0;
+    setInterval(() => {
+      controlSlideByIndex(index);
+      updatePagenation((index));
+      index++;
+      if(index === (slides.length) ){
+        index = 0;
+      }
+    }, 3000);
+  }
 };
 
 init();
