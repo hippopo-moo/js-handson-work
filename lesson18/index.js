@@ -132,7 +132,6 @@ const setPagenation = (slides) => {
       const activateBulletIndex = Array.from(bullets).findIndex((bullet)=>{
         return bullet === event.target;
       })
-      console.log(activateBulletIndex);
       currentBullet.classList.remove("is-active");
       bullets[activateBulletIndex].classList.add("is-active");
 
