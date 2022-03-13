@@ -1,5 +1,6 @@
 // const url = "https://myjson.dit.upm.es/api/bins/8b9d";
-const url = "test.json";
+// const url = "test.json";
+const url = "https://mocki.io/v1/0295f412-b9f3-4247-8a23-ff5a5f88248d";
 const main = document.querySelector("main");
 const sliderDirections = ["previous", "next"];
 const slideSpeed = 3000;
@@ -195,6 +196,17 @@ const updateFractionNum = ()=> {
   numerator.textContent = currentSlideNum;
 }
 
+const autoSlide = (slides) => {
+  let index = 0;
+  setInterval(() => {
+    controlSlideByIndex(index);
+    updatePagenation((index));
+    index++;
+    if(index === (slides.length) ){
+      index = 0;
+    }
+  }, 3000);
+}
 const setLoadingImage = () => {
   const fragmentLoadingImage = document.createDocumentFragment();
   const div = document.createElement("div");
@@ -242,15 +254,7 @@ const init = async () => {
   setPagenation(slides);
   setFraction(slides);
   if (autoSlideFlag){
-    let index = 0;
-    setInterval(() => {
-      controlSlideByIndex(index);
-      updatePagenation((index));
-      index++;
-      if(index === (slides.length) ){
-        index = 0;
-      }
-    }, 3000);
+    autoSlide(slides);
   }
 };
 
