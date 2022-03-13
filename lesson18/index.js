@@ -205,7 +205,7 @@ const autoSlide = (slides) => {
     if(index === (slides.length) ){
       index = 0;
     }
-  }, 3000);
+  }, slideSpeed);
 }
 const setLoadingImage = () => {
   const fragmentLoadingImage = document.createDocumentFragment();
