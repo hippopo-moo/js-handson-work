@@ -112,10 +112,10 @@ const setPagenation = (slides) => {
   pagenationWrapper.classList.add("pagenationWrapper");
   const slideLength = slides.length;
 
-  for (let i = 0; i < slideLength ; i++) {
+  for (let index = 0; index < slideLength ; index++) {
     const span = document.createElement("span");
     span.classList.add("pagenationBullet");
-    index === 0 ? span.classList.add("is-active") : span.classList.remove("is-active");
+    index === 0 && span.classList.add("is-active");
     span.setAttribute("data-slideNo",`slideNo${index}`);
     pagenationWrapper.appendChild(span);
 
