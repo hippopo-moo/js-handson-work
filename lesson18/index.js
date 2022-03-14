@@ -112,7 +112,7 @@ const setPagenation = (slides) => {
   pagenationWrapper.classList.add("pagenationWrapper");
   const slideLength = slides.length;
 
-  slides.map((slide,index) => {
+  for (let i = 0; i < slideLength ; i++) {
     const span = document.createElement("span");
     span.classList.add("pagenationBullet");
     index === 0 ? span.classList.add("is-active") : span.classList.remove("is-active");
@@ -126,9 +126,9 @@ const setPagenation = (slides) => {
       currentBullet.classList.remove("is-active");
       bullets[activateBulletIndex].classList.add("is-active");
 
-      controlSlideByIndex(index);
+      controlSlideByIndex(activateBulletIndex);
     });
-  });
+  };
   pagenation.appendChild(pagenationWrapper);
   slider.appendChild(pagenation);
 }
