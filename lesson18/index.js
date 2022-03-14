@@ -1,6 +1,5 @@
-// const url = "https://myjson.dit.upm.es/api/bins/8b9d";
 // const url = "test.json";
-const url = "https://mocki.io/v1/0295f412-b9f3-4247-8a23-ff5a5f88248d";
+const url = "https://mocki.io/v1/8e59d09b-c662-48ac-901d-20a4c3480519";
 const main = document.querySelector("main");
 const sliderDirections = ["previous", "next"];
 const slideSpeed = 3000;
