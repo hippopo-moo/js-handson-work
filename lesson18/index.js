@@ -116,7 +116,6 @@ const setPagenation = (slides) => {
     const span = document.createElement("span");
     span.classList.add("pagenationBullet");
     index === 0 && span.classList.add("is-active");
-    span.setAttribute("data-slideNo",`slideNo${index}`);
     pagenationWrapper.appendChild(span);
 
     span.addEventListener("click",(event)=>{
