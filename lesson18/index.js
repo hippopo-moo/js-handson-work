@@ -66,9 +66,7 @@ const setBtnEvent = () => {
 
       const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
       const nextSlide = document.querySelector('[data-hidden="false"]');
-      const nextSlideIndex = allSlides.findIndex((slide)=>{
-        return slide === nextSlide;
-      });
+      const nextSlideIndex = allSlides.indexOf(nextSlide);
       updatePagenation(nextSlideIndex);
     });
   });
@@ -92,9 +90,7 @@ const controlBtnBehavior = () => {
   const currentSlide = document.querySelector('[data-hidden="false"]');
   const prevBtn = document.getElementById("js-slider-previousBtn");
   const nextBtn = document.getElementById("js-slider-nextBtn");
-  const currentSlideIndex = allSlides.findIndex((slide)=>{
-    return slide === currentSlide;
-  });
+  const currentSlideIndex = allSlides.indexOf(currentSlide);
 
   if (currentSlideIndex === 0) {
     prevBtn.classList.add("is-disabled");
@@ -126,9 +122,7 @@ const setPagenation = (slides) => {
     span.addEventListener("click",(event)=>{
       const bullets = document.querySelectorAll(".pagenationBullet");
       const currentBullet = document.querySelector(".pagenationBullet.is-active");
-      const activateBulletIndex = Array.from(bullets).findIndex((bullet)=>{
-        return bullet === event.target;
-      })
+      const activateBulletIndex = Array.from(bullets).indexOf(event.target);
       currentBullet.classList.remove("is-active");
       bullets[activateBulletIndex].classList.add("is-active");
 
@@ -173,9 +167,7 @@ const setFraction = (slides) => {
 const updateFractionNum = ()=> {
   const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
   const currentSlide = document.querySelector('[data-hidden="false"]');
-  const currentSlideIndex = allSlides.findIndex((slide)=>{
-    return slide === currentSlide;
-  })
+  const currentSlideIndex = allSlides.indexOf(currentSlide);
   const numerator = document.getElementById("js-numerator");
   const currentSlideNum = currentSlideIndex + 1;
   numerator.textContent = currentSlideNum;
