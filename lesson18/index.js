@@ -126,24 +126,11 @@ const setPagenation = (slides) => {
     span.addEventListener("click",(event)=>{
       const bullets = document.querySelectorAll(".pagenationBullet");
       const currentBullet = document.querySelector(".pagenationBullet.is-active");
-      const prevBtn = document.getElementById("js-slider-previousBtn");
-      const nextBtn = document.getElementById("js-slider-nextBtn");
       const activateBulletIndex = Array.from(bullets).findIndex((bullet)=>{
         return bullet === event.target;
       })
       currentBullet.classList.remove("is-active");
       bullets[activateBulletIndex].classList.add("is-active");
-
-      if(activateBulletIndex === 0){
-        prevBtn.classList.add("is-disabled");
-        nextBtn.classList.remove("is-disabled");
-        return;
-      }
-      if(activateBulletIndex === slideLength){
-        nextBtn.classList.add("is-disabled");
-        prevBtn.classList.remove("is-disabled");
-        return;
-      }
 
       controlSlideByIndex(index);
     });
