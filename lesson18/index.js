@@ -5,6 +5,12 @@ const sliderDirections = ["previous", "next"];
 const slideSpeed = 3000;
 const autoSlideFlag = true;
 
+
+// PrevBtn,NextBtnとpagenationのスライドNoを連動させるためのグローバルindex
+// とりあえず初期値は0
+let globalIndex = 0;
+let globalIndexChangeFlag = false;
+
 const controlSlide = (direction) => {
   const currentSlide = document.querySelector('[data-hidden="false"]');
   const showSlide = currentSlide[direction];
@@ -15,11 +21,13 @@ const controlSlide = (direction) => {
 }
 
 const controlSlideByIndex = (index) => {
+  console.log(index)
   const allSlides = document.querySelectorAll(".sliderImg");
   const currentSlide = document.querySelector('[data-hidden="false"]');
   const showSlide = allSlides[index];
   currentSlide.setAttribute("data-hidden","true");
   showSlide.setAttribute("data-hidden","false");
+  globalIndex = index + 1;
   controlBtnBehavior();
   updateFractionNum();
 }
@@ -67,7 +75,7 @@ const setBtnEvent = () => {
       const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
       const nextSlide = document.querySelector('[data-hidden="false"]');
       const nextSlideIndex = allSlides.indexOf(nextSlide);
-      updatePagenation(nextSlideIndex);
+      updatePagenation(globalIndex);
     });
   });
 }
@@ -104,7 +112,7 @@ const controlBtnBehavior = () => {
   nextBtn.classList.remove("is-disabled");
 }
 
-const setPagenation = (slides) => {
+const setPagenation = (slides, globalIndex) => {
   const slider = document.getElementById("js-slider");
   const pagenation = document.createElement("div");
   pagenation.classList.add("pagenation");
@@ -119,13 +127,17 @@ const setPagenation = (slides) => {
     pagenationWrapper.appendChild(span);
 
     span.addEventListener("click",(event)=>{
+      const currentIndex = globalIndex + 1;
+      console.log("addEventListener内のcurrentIndex: "+currentIndex);
       const bullets = document.querySelectorAll(".pagenationBullet");
       const currentBullet = document.querySelector(".pagenationBullet.is-active");
-      const activateBulletIndex = Array.from(bullets).indexOf(event.target);
+      const activateBulletIndex = globalIndex = 0 ? globalIndex : Array.from(bullets).indexOf(event.target);
       currentBullet.classList.remove("is-active");
       bullets[activateBulletIndex].classList.add("is-active");
 
+      globalIndexChangeFlag = true;
       controlSlideByIndex(activateBulletIndex);
+      globalIndex = activateBulletIndex;
     });
   };
   pagenation.appendChild(pagenationWrapper);
@@ -173,16 +185,29 @@ const updateFractionNum = ()=> {
 }
 
 const autoSlide = (slides) => {
-  let index = 0;
   setInterval(() => {
+    let index = globalIndex;
+    if(globalIndexChangeFlag){
+      console.log("globalIndexChangeFlag");
+      console.log(index);
+      index = globalIndex - 1;
+      globalIndexChangeFlag = false;
+    }
+    console.log("autoSlide: "+ index);
     controlSlideByIndex(index);
     updatePagenation((index));
     index++;
+    console.log("autoSlideのif文の前のindex: "+ index);
     if(index === (slides.length) ){
       index = 0;
+      globalIndex = 0;
     }
   }, slideSpeed);
 }
+
+// globalIndexが更新されたことを、autoSlide内でどうにかして検知したい！！！
+
+
 const setLoadingImage = () => {
   const fragmentLoadingImage = document.createDocumentFragment();
   const div = document.createElement("div");
