@@ -21,7 +21,6 @@ const controlSlide = (direction) => {
 }
 
 const controlSlideByIndex = (index) => {
-  console.log(index)
   const allSlides = document.querySelectorAll(".sliderImg");
   const currentSlide = document.querySelector('[data-hidden="false"]');
   const showSlide = allSlides[index];
@@ -74,7 +73,7 @@ const setBtnEvent = () => {
 
       const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
       const nextSlide = document.querySelector('[data-hidden="false"]');
-      const nextSlideIndex = allSlides.indexOf(nextSlide);
+      // const nextSlideIndex = allSlides.indexOf(nextSlide);
       updatePagenation(globalIndex);
     });
   });
@@ -102,6 +101,7 @@ const controlBtnBehavior = () => {
 
   if (currentSlideIndex === 0) {
     prevBtn.classList.add("is-disabled");
+    nextBtn.classList.remove("is-disabled");
     return;
   }
   if (currentSlideIndex === allSlidesLength - 1) {
@@ -128,7 +128,6 @@ const setPagenation = (slides, globalIndex) => {
 
     span.addEventListener("click",(event)=>{
       const currentIndex = globalIndex + 1;
-      console.log("addEventListener内のcurrentIndex: "+currentIndex);
       const bullets = document.querySelectorAll(".pagenationBullet");
       const currentBullet = document.querySelector(".pagenationBullet.is-active");
       const activateBulletIndex = globalIndex = 0 ? globalIndex : Array.from(bullets).indexOf(event.target);
@@ -188,16 +187,12 @@ const autoSlide = (slides) => {
   setInterval(() => {
     let index = globalIndex;
     if(globalIndexChangeFlag){
-      console.log("globalIndexChangeFlag");
-      console.log(index);
       index = globalIndex - 1;
       globalIndexChangeFlag = false;
     }
-    console.log("autoSlide: "+ index);
     controlSlideByIndex(index);
     updatePagenation((index));
     index++;
-    console.log("autoSlideのif文の前のindex: "+ index);
     if(index === (slides.length) ){
       index = 0;
       globalIndex = 0;
