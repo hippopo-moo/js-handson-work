@@ -1,4 +1,3 @@
-// const url = "test.json";
 const url = "https://mocki.io/v1/8e59d09b-c662-48ac-901d-20a4c3480519";
 const main = document.querySelector("main");
 const sliderDirections = ["previous", "next"];
@@ -17,17 +16,24 @@ const controlSlide = (direction) => {
   currentSlide.setAttribute("data-hidden","true");
   showSlide.setAttribute("data-hidden","false");
   controlBtnBehavior();
+  // updatePagenation();
   updateFractionNum();
 }
 
 const controlSlideByIndex = (index) => {
   const allSlides = document.querySelectorAll(".sliderImg");
   const currentSlide = document.querySelector('[data-hidden="false"]');
-  const showSlide = allSlides[index];
+  if(globalIndex === 5){
+    globalIndex = 0;
+  }
+  console.log("controlSlideByIndexのindex: "+ globalIndex);
+  const showSlide = allSlides[globalIndex];
   currentSlide.setAttribute("data-hidden","true");
   showSlide.setAttribute("data-hidden","false");
-  globalIndex = index + 1;
+  const currentSlideIndex = Array.from(allSlides).indexOf(currentSlide);
+  globalIndex++;
   controlBtnBehavior();
+  updatePagenation(currentSlideIndex);
   updateFractionNum();
 }
 
@@ -73,8 +79,9 @@ const setBtnEvent = () => {
 
       const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
       const nextSlide = document.querySelector('[data-hidden="false"]');
-      // const nextSlideIndex = allSlides.indexOf(nextSlide);
-      updatePagenation(globalIndex);
+      let nextSlideIndex = allSlides.indexOf(e.target) + 1;
+      console.log("setBtnEvent内のglobalIndex: " + nextSlideIndex);
+      updatePagenationInSetEventBtn(globalIndex);
     });
   });
 }
@@ -112,7 +119,7 @@ const controlBtnBehavior = () => {
   nextBtn.classList.remove("is-disabled");
 }
 
-const setPagenation = (slides, globalIndex) => {
+const setPagenation = (slides) => {
   const slider = document.getElementById("js-slider");
   const pagenation = document.createElement("div");
   pagenation.classList.add("pagenation");
@@ -127,12 +134,14 @@ const setPagenation = (slides, globalIndex) => {
     pagenationWrapper.appendChild(span);
 
     span.addEventListener("click",(event)=>{
-      const currentIndex = globalIndex + 1;
+      const currentIndex = globalIndex;
       const bullets = document.querySelectorAll(".pagenationBullet");
       const currentBullet = document.querySelector(".pagenationBullet.is-active");
       const activateBulletIndex = globalIndex = 0 ? globalIndex : Array.from(bullets).indexOf(event.target);
       currentBullet.classList.remove("is-active");
       bullets[activateBulletIndex].classList.add("is-active");
+
+      // TODO この辺の修正が必要そう！！！3/21 22:55
 
       globalIndexChangeFlag = true;
       controlSlideByIndex(activateBulletIndex);
@@ -143,13 +152,27 @@ const setPagenation = (slides, globalIndex) => {
   slider.appendChild(pagenation);
 }
 
-const updatePagenation = (currentSlideIndex) => {
-  const activateSlideIndex = currentSlideIndex;
+const updatePagenation = () => {
+  const activateSlideIndex = globalIndex - 1;
+  console.log(activateSlideIndex);
   const bullets = document.querySelectorAll(".pagenationBullet");
   const currentBullet = document.querySelector(".pagenationBullet.is-active");
   currentBullet.classList.remove("is-active");
   const activateBullet = bullets[activateSlideIndex];
+  console.log(activateBullet);
   activateBullet.classList.add("is-active");
+}
+
+const updatePagenationInSetEventBtn = (currentSlideIndex) => {
+  const activateSlideIndex = currentSlideIndex + 1;
+  const bullets = document.querySelectorAll(".pagenationBullet");
+  const currentBullet = document.querySelector(".pagenationBullet.is-active");
+  currentBullet.classList.remove("is-active");
+  const activateBullet = bullets[activateSlideIndex];
+  console.log(currentBullet);
+  console.log(activateBullet);
+  activateBullet.classList.add("is-active");
+  globalIndex++;
 }
 
 const setFraction = (slides) => {
@@ -191,7 +214,7 @@ const autoSlide = (slides) => {
       globalIndexChangeFlag = false;
     }
     controlSlideByIndex(index);
-    updatePagenation((index));
+    // updatePagenation((index));
     index++;
     if(index === (slides.length) ){
       index = 0;
