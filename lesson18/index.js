@@ -80,8 +80,9 @@ const setBtnEvent = () => {
       const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
       const nextSlide = document.querySelector('[data-hidden="false"]');
       let nextSlideIndex = allSlides.indexOf(e.target) + 1;
-      console.log("setBtnEvent内のglobalIndex: " + nextSlideIndex);
-      updatePagenationInSetEventBtn(globalIndex);
+      console.log("setBtnEvent内のnextSlideIndex: " + nextSlideIndex);
+      console.log("setBtnEvent内のglobalIndex: " + globalIndex);
+      updatePagenationInSetEventBtn(eventTargetBtnType);
     });
   });
 }
@@ -163,16 +164,32 @@ const updatePagenation = () => {
   activateBullet.classList.add("is-active");
 }
 
-const updatePagenationInSetEventBtn = (currentSlideIndex) => {
-  const activateSlideIndex = currentSlideIndex + 1;
+const updatePagenationInSetEventBtn = (eventTargetBtnType) => {
+  let activateSlideIndex = globalIndex;
+  console.log("updatePagenationInSetEventBtn: "+ activateSlideIndex);
+  if(eventTargetBtnType === "previous" ){
+    activateSlideIndex--;
+  } else {
+    activateSlideIndex++;
+  }
+  console.log(activateSlideIndex);
   const bullets = document.querySelectorAll(".pagenationBullet");
   const currentBullet = document.querySelector(".pagenationBullet.is-active");
   currentBullet.classList.remove("is-active");
   const activateBullet = bullets[activateSlideIndex];
-  console.log(currentBullet);
-  console.log(activateBullet);
+  // console.log(currentBullet);
+  // console.log(activateBullet);
   activateBullet.classList.add("is-active");
-  globalIndex++;
+  if(eventTargetBtnType === "previous" ){
+    globalIndex--;
+  } else {
+    globalIndex++;
+  }
+
+
+  if(globalIndex === 5){
+    globalIndex = 0;
+  }
 }
 
 const setFraction = (slides) => {
