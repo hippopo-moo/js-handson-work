@@ -170,7 +170,11 @@ const updatePagenationInSetEventBtn = (eventTargetBtnType) => {
   if(eventTargetBtnType === "previous" ){
     activateSlideIndex--;
   } else {
-    activateSlideIndex++;
+    if(activateSlideIndex === 4){
+      activateSlideIndex = 0;
+    }else {
+      activateSlideIndex++;
+    }
   }
   console.log(activateSlideIndex);
   const bullets = document.querySelectorAll(".pagenationBullet");
