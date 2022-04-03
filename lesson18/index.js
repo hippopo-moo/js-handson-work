@@ -2,7 +2,7 @@ const url = "https://mocki.io/v1/8e59d09b-c662-48ac-901d-20a4c3480519";
 const main = document.querySelector("main");
 const sliderDirections = ["previous", "next"];
 const slideSpeed = 3000;
-const autoSlideFlag = true;
+const autoSlideFlag = false;
 
 
 // PrevBtn,NextBtnとpagenationのスライドNoを連動させるためのグローバルindex
@@ -10,15 +10,13 @@ const autoSlideFlag = true;
 let globalIndex = 0;
 let globalIndexChangeFlag = false;
 
-const controlSlide = (direction) => {
+const controlSlide = () => {
+  const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
   const currentSlide = document.querySelector('[data-hidden="false"]');
-  const showSlide = currentSlide[direction];
-  currentSlide.setAttribute("data-hidden","true");
-  showSlide.setAttribute("data-hidden","false");
-  controlBtnBehavior();
-  // updatePagenation();
-  updateFractionNum();
-}
+  const showSlide = allSlides[globalIndex];
+  currentSlide.setAttribute("data-hidden", "true");
+  showSlide.setAttribute("data-hidden", "false");
+};
 
 const controlSlideByIndex = (index) => {
   const allSlides = document.querySelectorAll(".sliderImg");
@@ -75,14 +73,15 @@ const setBtnEvent = () => {
   buttons.forEach((button) => {
     button.addEventListener("click", (e) => {
       const eventTargetBtnType = e.target.getAttribute("data-btntype");
-      controlSlide(`${eventTargetBtnType}ElementSibling`);
-
-      const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
-      const nextSlide = document.querySelector('[data-hidden="false"]');
-      let nextSlideIndex = allSlides.indexOf(e.target) + 1;
-      console.log("setBtnEvent内のnextSlideIndex: " + nextSlideIndex);
-      console.log("setBtnEvent内のglobalIndex: " + globalIndex);
-      updatePagenationInSetEventBtn(eventTargetBtnType);
+      if(eventTargetBtnType === "previous"){
+        globalIndex--;
+      }else {
+        globalIndex++
+      }
+      controlSlide(); // スライド画像の切り替え
+      controlBtnBehavior();// disabledの切り替え
+      updatePagenation(); // ページネーションの更新
+      updateFractionNum(); // カウンターの更新
     });
   });
 }
@@ -100,12 +99,10 @@ const createSliderBtns = () => {
 }
 
 const controlBtnBehavior = () => {
-  const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
   const allSlidesLength = Array.from(document.querySelectorAll(".sliderImg")).length;
-  const currentSlide = document.querySelector('[data-hidden="false"]');
   const prevBtn = document.getElementById("js-slider-previousBtn");
   const nextBtn = document.getElementById("js-slider-nextBtn");
-  const currentSlideIndex = allSlides.indexOf(currentSlide);
+  const currentSlideIndex = globalIndex;
 
   if (currentSlideIndex === 0) {
     prevBtn.classList.add("is-disabled");
@@ -154,13 +151,11 @@ const setPagenation = (slides) => {
 }
 
 const updatePagenation = () => {
-  const activateSlideIndex = globalIndex - 1;
-  console.log(activateSlideIndex);
+  const activateSlideIndex = globalIndex;
   const bullets = document.querySelectorAll(".pagenationBullet");
   const currentBullet = document.querySelector(".pagenationBullet.is-active");
   currentBullet.classList.remove("is-active");
   const activateBullet = bullets[activateSlideIndex];
-  console.log(activateBullet);
   activateBullet.classList.add("is-active");
 }
 
@@ -221,7 +216,7 @@ const setFraction = (slides) => {
 const updateFractionNum = ()=> {
   const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
   const currentSlide = document.querySelector('[data-hidden="false"]');
-  const currentSlideIndex = allSlides.indexOf(currentSlide);
+  const currentSlideIndex = globalIndex;
   const numerator = document.getElementById("js-numerator");
   const currentSlideNum = currentSlideIndex + 1;
   numerator.textContent = currentSlideNum;
@@ -293,9 +288,9 @@ const init = async () => {
   initSlides(slides);
   setPagenation(slides);
   setFraction(slides);
-  if (autoSlideFlag){
-    autoSlide(slides);
-  }
+  // if (autoSlideFlag){
+  //   autoSlide(slides);
+  // }
 };
 
 init();
