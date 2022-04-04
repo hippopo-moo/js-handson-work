@@ -4,9 +4,6 @@ const sliderDirections = ["previous", "next"];
 const slideSpeed = 3000;
 const autoSlideFlag = false;
 
-
-// PrevBtn,NextBtnとpagenationのスライドNoを連動させるためのグローバルindex
-// とりあえず初期値は0
 let globalIndex = 0;
 let globalIndexChangeFlag = false;
 
@@ -75,7 +72,7 @@ const setBtnEvent = () => {
       const eventTargetBtnType = e.target.getAttribute("data-btntype");
       if(eventTargetBtnType === "previous"){
         globalIndex--;
-      }else {
+      } else {
         globalIndex++
       }
       controlSlide(); // スライド画像の切り替え
@@ -131,18 +128,16 @@ const setPagenation = (slides) => {
     pagenationWrapper.appendChild(span);
 
     span.addEventListener("click",(event)=>{
-      const currentIndex = globalIndex;
       const bullets = document.querySelectorAll(".pagenationBullet");
       const currentBullet = document.querySelector(".pagenationBullet.is-active");
-      const activateBulletIndex = globalIndex = 0 ? globalIndex : Array.from(bullets).indexOf(event.target);
+      globalIndex = Array.from(bullets).indexOf(event.target);
       currentBullet.classList.remove("is-active");
-      bullets[activateBulletIndex].classList.add("is-active");
+      bullets[globalIndex].classList.add("is-active");
 
-      // TODO この辺の修正が必要そう！！！3/21 22:55
-
-      globalIndexChangeFlag = true;
-      controlSlideByIndex(activateBulletIndex);
-      globalIndex = activateBulletIndex;
+      controlSlide(); // スライド画像の切り替え
+      controlBtnBehavior();// disabledの切り替え
+      updatePagenation(); // ページネーションの更新
+      updateFractionNum(); // カウンターの更新
     });
   };
   pagenation.appendChild(pagenationWrapper);
