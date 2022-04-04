@@ -102,14 +102,13 @@ const controlBtnBehavior = () => {
   const allSlidesLength = Array.from(document.querySelectorAll(".sliderImg")).length;
   const prevBtn = document.getElementById("js-slider-previousBtn");
   const nextBtn = document.getElementById("js-slider-nextBtn");
-  const currentSlideIndex = globalIndex;
 
-  if (currentSlideIndex === 0) {
+  if (globalIndex === 0) {
     prevBtn.classList.add("is-disabled");
     nextBtn.classList.remove("is-disabled");
     return;
   }
-  if (currentSlideIndex === allSlidesLength - 1) {
+  if (globalIndex === allSlidesLength - 1) {
     nextBtn.classList.add("is-disabled");
     return;
   }
