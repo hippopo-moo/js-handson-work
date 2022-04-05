@@ -2,7 +2,7 @@ const url = "https://mocki.io/v1/8e59d09b-c662-48ac-901d-20a4c3480519";
 const main = document.querySelector("main");
 const sliderDirections = ["previous", "next"];
 const slideSpeed = 3000;
-const autoSlideFlag = false;
+const autoSlideFlag = true;
 
 let globalIndex = 0;
 let globalIndexChangeFlag = false;
@@ -10,27 +10,11 @@ let globalIndexChangeFlag = false;
 const controlSlide = () => {
   const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
   const currentSlide = document.querySelector('[data-hidden="false"]');
+  console.log(globalIndex);
   const showSlide = allSlides[globalIndex];
   currentSlide.setAttribute("data-hidden", "true");
   showSlide.setAttribute("data-hidden", "false");
 };
-
-const controlSlideByIndex = (index) => {
-  const allSlides = document.querySelectorAll(".sliderImg");
-  const currentSlide = document.querySelector('[data-hidden="false"]');
-  if(globalIndex === 5){
-    globalIndex = 0;
-  }
-  console.log("controlSlideByIndexのindex: "+ globalIndex);
-  const showSlide = allSlides[globalIndex];
-  currentSlide.setAttribute("data-hidden","true");
-  showSlide.setAttribute("data-hidden","false");
-  const currentSlideIndex = Array.from(allSlides).indexOf(currentSlide);
-  globalIndex++;
-  controlBtnBehavior();
-  updatePagenation(currentSlideIndex);
-  updateFractionNum();
-}
 
 const slideImgTemplate = (index, slide) => {
   const div = document.createElement("div");
@@ -65,28 +49,31 @@ const initSlides = (slides)=> {
   createSliderBtns();
 }
 
+const arrowBtnEvent = (e) => {
+  console.log("クリックされた");
+  const eventTargetBtnType = e.target.getAttribute("data-btntype");
+  if(eventTargetBtnType === "previous"){
+    globalIndex--;
+  } else {
+    globalIndex++
+  }
+  controlSlide(); // スライド画像の切り替え
+  controlBtnBehavior();// disabledの切り替え
+  updatePagenation(); // ページネーションの更新
+  updateFractionNum(); // カウンターの更新
+}
+
 const setBtnEvent = () => {
   const buttons = document.querySelectorAll(".sliderBtn");
   buttons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      const eventTargetBtnType = e.target.getAttribute("data-btntype");
-      if(eventTargetBtnType === "previous"){
-        globalIndex--;
-      } else {
-        globalIndex++
-      }
-      controlSlide(); // スライド画像の切り替え
-      controlBtnBehavior();// disabledの切り替え
-      updatePagenation(); // ページネーションの更新
-      updateFractionNum(); // カウンターの更新
-    });
+    button.addEventListener("click", arrowBtnEvent);
   });
 }
 
 const createSliderBtns = () => {
   sliderDirections.forEach((sliderDirection) => {
     const button = document.createElement("div");
-    button.classList.add("sliderBtn", `${sliderDirection}`);
+    button.classList.add("sliderBtn", `${sliderDirection}`, "clickableBtn");
     button.id = `js-slider-${sliderDirection}Btn`;
     button.setAttribute("data-btntype", `${sliderDirection}`)
     sliderDirection === "previous" && button.classList.add("is-disabled");
@@ -113,6 +100,20 @@ const controlBtnBehavior = () => {
   nextBtn.classList.remove("is-disabled");
 }
 
+const pagenationBulletEvent = (event)=>{
+  console.log("bulletがクリックされた");
+  const bullets = document.querySelectorAll(".pagenationBullet");
+  const currentBullet = document.querySelector(".pagenationBullet.is-active");
+  globalIndex = Array.from(bullets).indexOf(event.target);
+  currentBullet.classList.remove("is-active");
+  bullets[globalIndex].classList.add("is-active");
+
+  controlSlide(); // スライド画像の切り替え
+  controlBtnBehavior();// disabledの切り替え
+  updatePagenation(); // ページネーションの更新
+  updateFractionNum(); // カウンターの更新
+}
+
 const setPagenation = (slides) => {
   const slider = document.getElementById("js-slider");
   const pagenation = document.createElement("div");
@@ -123,22 +124,11 @@ const setPagenation = (slides) => {
 
   for (let index = 0; index < slideLength ; index++) {
     const span = document.createElement("span");
-    span.classList.add("pagenationBullet");
+    span.classList.add("pagenationBullet","clickableBtn");
     index === 0 && span.classList.add("is-active");
     pagenationWrapper.appendChild(span);
 
-    span.addEventListener("click",(event)=>{
-      const bullets = document.querySelectorAll(".pagenationBullet");
-      const currentBullet = document.querySelector(".pagenationBullet.is-active");
-      globalIndex = Array.from(bullets).indexOf(event.target);
-      currentBullet.classList.remove("is-active");
-      bullets[globalIndex].classList.add("is-active");
-
-      controlSlide(); // スライド画像の切り替え
-      controlBtnBehavior();// disabledの切り替え
-      updatePagenation(); // ページネーションの更新
-      updateFractionNum(); // カウンターの更新
-    });
+    span.addEventListener("click",pagenationBulletEvent);
   };
   pagenation.appendChild(pagenationWrapper);
   slider.appendChild(pagenation);
@@ -151,38 +141,6 @@ const updatePagenation = () => {
   currentBullet.classList.remove("is-active");
   const activateBullet = bullets[activateSlideIndex];
   activateBullet.classList.add("is-active");
-}
-
-const updatePagenationInSetEventBtn = (eventTargetBtnType) => {
-  let activateSlideIndex = globalIndex;
-  console.log("updatePagenationInSetEventBtn: "+ activateSlideIndex);
-  if(eventTargetBtnType === "previous" ){
-    activateSlideIndex--;
-  } else {
-    if(activateSlideIndex === 4){
-      activateSlideIndex = 0;
-    }else {
-      activateSlideIndex++;
-    }
-  }
-  console.log(activateSlideIndex);
-  const bullets = document.querySelectorAll(".pagenationBullet");
-  const currentBullet = document.querySelector(".pagenationBullet.is-active");
-  currentBullet.classList.remove("is-active");
-  const activateBullet = bullets[activateSlideIndex];
-  // console.log(currentBullet);
-  // console.log(activateBullet);
-  activateBullet.classList.add("is-active");
-  if(eventTargetBtnType === "previous" ){
-    globalIndex--;
-  } else {
-    globalIndex++;
-  }
-
-
-  if(globalIndex === 5){
-    globalIndex = 0;
-  }
 }
 
 const setFraction = (slides) => {
@@ -208,33 +166,41 @@ const setFraction = (slides) => {
 }
 
 const updateFractionNum = ()=> {
-  const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
-  const currentSlide = document.querySelector('[data-hidden="false"]');
-  const currentSlideIndex = globalIndex;
   const numerator = document.getElementById("js-numerator");
-  const currentSlideNum = currentSlideIndex + 1;
+  const currentSlideNum = globalIndex + 1;
   numerator.textContent = currentSlideNum;
 }
 
 const autoSlide = (slides) => {
+  const prevBtn = document.getElementById("js-slider-previousBtn");
+  const nextBtn = document.getElementById("js-slider-nextBtn");
+  const bullets = document.querySelectorAll(".pagenationBullet");
+
+  const clickableBtns = document.querySelectorAll(".clickableBtn");
+  clickableBtns.forEach((clickableBtn)=>{
+    prevBtn.removeEventListener("click", arrowBtnEvent);
+    nextBtn.removeEventListener("click", arrowBtnEvent);
+    bullets.forEach((bullet)=>{
+      bullet.removeEventListener("click", pagenationBulletEvent);
+    })
+    clickableBtn.addEventListener("click", ()=> {
+      globalIndex = 0;
+    });
+  })
+
   setInterval(() => {
-    let index = globalIndex;
-    if(globalIndexChangeFlag){
-      index = globalIndex - 1;
-      globalIndexChangeFlag = false;
-    }
-    controlSlideByIndex(index);
-    // updatePagenation((index));
-    index++;
-    if(index === (slides.length) ){
-      index = 0;
+    console.log(globalIndex);
+    controlSlide(); // スライド画像の切り替え
+    controlBtnBehavior();// disabledの切り替え
+    updatePagenation(); // ページネーションの更新
+    updateFractionNum(); // カウンターの更新
+
+    globalIndex++;
+    if(globalIndex === (slides.length) ){
       globalIndex = 0;
     }
   }, slideSpeed);
 }
-
-// globalIndexが更新されたことを、autoSlide内でどうにかして検知したい！！！
-
 
 const setLoadingImage = () => {
   const fragmentLoadingImage = document.createDocumentFragment();
@@ -282,9 +248,9 @@ const init = async () => {
   initSlides(slides);
   setPagenation(slides);
   setFraction(slides);
-  // if (autoSlideFlag){
-  //   autoSlide(slides);
-  // }
+  if (autoSlideFlag){
+    autoSlide(slides);
+  }
 };
 
 init();
