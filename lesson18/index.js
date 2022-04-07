@@ -5,7 +5,6 @@ const slideSpeed = 3000;
 const autoSlideFlag = true;
 
 let globalIndex = 0;
-let globalIndexChangeFlag = false;
 
 const controlSlide = () => {
   const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
