@@ -1,15 +1,18 @@
-const url = "https://myjson.dit.upm.es/api/bins/8b9d";
+const url = "https://mocki.io/v1/8e59d09b-c662-48ac-901d-20a4c3480519";
 const main = document.querySelector("main");
 const sliderDirections = ["previous", "next"];
+const slideSpeed = 3000;
+const autoSlideFlag = true;
 
-const controlSlide = (direction) => {
+let globalIndex = 0;
+
+const controlSlide = () => {
+  const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
   const currentSlide = document.querySelector('[data-hidden="false"]');
-  const showSlide = currentSlide[direction];
-  currentSlide.setAttribute("data-hidden","true");
-  showSlide.setAttribute("data-hidden","false");
-  controlBtnBehavior();
-  updateFractionNum();
-}
+  const showSlide = allSlides[globalIndex];
+  currentSlide.setAttribute("data-hidden", "true");
+  showSlide.setAttribute("data-hidden", "false");
+};
 
 const slideImgTemplate = (index, slide) => {
   const div = document.createElement("div");
@@ -44,20 +47,30 @@ const initSlides = (slides)=> {
   createSliderBtns();
 }
 
+const arrowBtnEvent = (e) => {
+  const eventTargetBtnType = e.target.getAttribute("data-btntype");
+  if(eventTargetBtnType === "previous"){
+    globalIndex--;
+  } else {
+    globalIndex++
+  }
+  controlSlide(); // スライド画像の切り替え
+  controlBtnBehavior();// disabledの切り替え
+  updatePagenation(); // ページネーションの更新
+  updateFractionNum(); // カウンターの更新
+}
+
 const setBtnEvent = () => {
   const buttons = document.querySelectorAll(".sliderBtn");
   buttons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      const eventTargetBtnType = e.target.getAttribute("data-btntype");
-      controlSlide(`${eventTargetBtnType}ElementSibling`);
-    });
+    button.addEventListener("click", arrowBtnEvent);
   });
 }
 
 const createSliderBtns = () => {
   sliderDirections.forEach((sliderDirection) => {
     const button = document.createElement("div");
-    button.classList.add("sliderBtn", `${sliderDirection}`);
+    button.classList.add("sliderBtn", `${sliderDirection}`, "clickableBtn");
     button.id = `js-slider-${sliderDirection}Btn`;
     button.setAttribute("data-btntype", `${sliderDirection}`)
     sliderDirection === "previous" && button.classList.add("is-disabled");
@@ -67,25 +80,63 @@ const createSliderBtns = () => {
 }
 
 const controlBtnBehavior = () => {
-  const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
   const allSlidesLength = Array.from(document.querySelectorAll(".sliderImg")).length;
-  const currentSlide = document.querySelector('[data-hidden="false"]');
   const prevBtn = document.getElementById("js-slider-previousBtn");
   const nextBtn = document.getElementById("js-slider-nextBtn");
-  const currentSlideIndex = allSlides.findIndex((slide)=>{
-    return slide === currentSlide;
-  });
 
-  if (currentSlideIndex === 0) {
+  if (globalIndex === 0) {
     prevBtn.classList.add("is-disabled");
+    nextBtn.classList.remove("is-disabled");
     return;
   }
-  if (currentSlideIndex === allSlidesLength - 1) {
+  if (globalIndex === allSlidesLength - 1) {
     nextBtn.classList.add("is-disabled");
     return;
   }
   prevBtn.classList.remove("is-disabled");
   nextBtn.classList.remove("is-disabled");
+}
+
+const pagenationBulletEvent = (event)=>{
+  const bullets = document.querySelectorAll(".pagenationBullet");
+  const currentBullet = document.querySelector(".pagenationBullet.is-active");
+  globalIndex = Array.from(bullets).indexOf(event.target);
+  currentBullet.classList.remove("is-active");
+  bullets[globalIndex].classList.add("is-active");
+
+  controlSlide(); // スライド画像の切り替え
+  controlBtnBehavior();// disabledの切り替え
+  updatePagenation(); // ページネーションの更新
+  updateFractionNum(); // カウンターの更新
+}
+
+const setPagenation = (slides) => {
+  const slider = document.getElementById("js-slider");
+  const pagenation = document.createElement("div");
+  pagenation.classList.add("pagenation");
+  const pagenationWrapper = document.createElement("div");
+  pagenationWrapper.classList.add("pagenationWrapper");
+  const slideLength = slides.length;
+
+  for (let index = 0; index < slideLength ; index++) {
+    const span = document.createElement("span");
+    span.classList.add("pagenationBullet","clickableBtn");
+    index === 0 && span.classList.add("is-active");
+    pagenationWrapper.appendChild(span);
+
+    span.addEventListener("click",pagenationBulletEvent);
+  };
+  pagenation.appendChild(pagenationWrapper);
+  slider.appendChild(pagenation);
+}
+
+const updatePagenation = () => {
+  const activateSlideIndex = globalIndex;
+  const bullets = document.querySelectorAll(".pagenationBullet");
+  const currentBullet = document.querySelector(".pagenationBullet.is-active");
+  currentBullet.classList.remove("is-active");
+  const activateBullet = bullets[activateSlideIndex];
+  activateBullet.classList.add("is-active");
 }
 
 const setFraction = (slides) => {
@@ -111,14 +162,39 @@ const setFraction = (slides) => {
 }
 
 const updateFractionNum = ()=> {
-  const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
-  const currentSlide = document.querySelector('[data-hidden="false"]');
-  const currentSlideIndex = allSlides.findIndex((slide)=>{
-    return slide === currentSlide;
-  })
   const numerator = document.getElementById("js-numerator");
-  const currentSlideNum = currentSlideIndex + 1;
+  const currentSlideNum = globalIndex + 1;
   numerator.textContent = currentSlideNum;
+}
+
+const autoSlide = (slides) => {
+  const prevBtn = document.getElementById("js-slider-previousBtn");
+  const nextBtn = document.getElementById("js-slider-nextBtn");
+  const bullets = document.querySelectorAll(".pagenationBullet");
+
+  const clickableBtns = document.querySelectorAll(".clickableBtn");
+  clickableBtns.forEach((clickableBtn)=>{
+    prevBtn.removeEventListener("click", arrowBtnEvent);
+    nextBtn.removeEventListener("click", arrowBtnEvent);
+    bullets.forEach((bullet)=>{
+      bullet.removeEventListener("click", pagenationBulletEvent);
+    })
+    clickableBtn.addEventListener("click", ()=> {
+      globalIndex = 0;
+    });
+  })
+
+  setInterval(() => {
+    controlSlide(); // スライド画像の切り替え
+    controlBtnBehavior();// disabledの切り替え
+    updatePagenation(); // ページネーションの更新
+    updateFractionNum(); // カウンターの更新
+
+    globalIndex++;
+    if(globalIndex === (slides.length) ){
+      globalIndex = 0;
+    }
+  }, slideSpeed);
 }
 
 const setLoadingImage = () => {
@@ -165,7 +241,11 @@ const init = async () => {
   const {slides} = await response.json();
   removeLoadingImage();
   initSlides(slides);
+  setPagenation(slides);
   setFraction(slides);
+  if (autoSlideFlag){
+    autoSlide(slides);
+  }
 };
 
 init();

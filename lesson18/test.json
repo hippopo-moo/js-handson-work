@@ -2,27 +2,27 @@
   "slides": [
     {
       "id":"B32ACF69-7337-547B-B723-448229AF0D6C",
-      "img":"/lesson17/images/slide1.jpg",
+      "img":"./images/slide1.jpg",
       "alt":"slide1"
     },
     {
       "id":"FDAA3477-2B74-BF38-3474-03F98B179BDF",
-      "img":"/lesson17/images/slide2.jpg",
+      "img":"./images/slide2.jpg",
       "alt":"slide2"
     },
     {
       "id":"F8ED3D55-0A4E-3E22-1988-7841D6DBAA80",
-      "img":"/lesson17/images/slide3.jpg",
+      "img":"./images/slide3.jpg",
       "alt":"slide3"
     },
     {
       "id":"65307F79-277D-7D8C-F7C5-B50EA00AC47B",
-      "img":"/lesson17/images/slide4.jpg",
+      "img":"./images/slide4.jpg",
       "alt":"slide4"
     },
     {
       "id":"40D5F1F7-DD66-3C2E-70B8-031179D872D0",
-      "img":"/lesson17/images/slide5.jpg",
+      "img":"./images/slide5.jpg",
       "alt":"slide5"
     }
   ]
