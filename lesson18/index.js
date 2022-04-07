@@ -9,7 +9,6 @@ let globalIndex = 0;
 const controlSlide = () => {
   const allSlides = Array.from(document.querySelectorAll(".sliderImg"));
   const currentSlide = document.querySelector('[data-hidden="false"]');
-  console.log(globalIndex);
   const showSlide = allSlides[globalIndex];
   currentSlide.setAttribute("data-hidden", "true");
   showSlide.setAttribute("data-hidden", "false");
@@ -49,7 +48,6 @@ const initSlides = (slides)=> {
 }
 
 const arrowBtnEvent = (e) => {
-  console.log("クリックされた");
   const eventTargetBtnType = e.target.getAttribute("data-btntype");
   if(eventTargetBtnType === "previous"){
     globalIndex--;
@@ -100,7 +98,6 @@ const controlBtnBehavior = () => {
 }
 
 const pagenationBulletEvent = (event)=>{
-  console.log("bulletがクリックされた");
   const bullets = document.querySelectorAll(".pagenationBullet");
   const currentBullet = document.querySelector(".pagenationBullet.is-active");
   globalIndex = Array.from(bullets).indexOf(event.target);
@@ -188,7 +185,6 @@ const autoSlide = (slides) => {
   })
 
   setInterval(() => {
-    console.log(globalIndex);
     controlSlide(); // スライド画像の切り替え
     controlBtnBehavior();// disabledの切り替え
     updatePagenation(); // ページネーションの更新
